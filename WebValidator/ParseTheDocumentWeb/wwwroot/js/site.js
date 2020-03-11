@@ -4,10 +4,10 @@
     $('<div id="errors" class="container text-danger"></div>').appendTo('body');
     if (e.responseJSON._errors.length) {
         e.responseJSON._errors.forEach(function (value, index) {
-            $('#errors').append(`<span>${value}</span></br>`);
+            $('#errors').append(`<span>◉ ${value}</span><br/><hr/>`);
         });
     } else {
-        $('#errors').append(`<span class="text-success">No errors</span></br>`);
+        $('#errors').append(`<span class="text-success">No errors</span><br/>`);
     }
     //init warnings
     $('#warnings').remove();
@@ -18,18 +18,18 @@
                 const htmlToAppend = value.replace(/((\w*plus\b\w*)|(\w*Plus\b\w*)).*(following\b\w*)/, function (match, p1, p2) {
                     return `<span style="color: #39a20c;">${match}</span>`;
                 })
-                $('#warnings').append(`<span>${htmlToAppend}</span></br>`);
+                $('#warnings').append(`<span>◉ ${htmlToAppend}</span><br/><hr/>`);
             } else if ((value.toLowerCase().indexOf('from') !== -1 || value.toLowerCase().indexOf('of') !== -1) && value.toLowerCase().indexOf('the') !== -1 && value.toLowerCase().indexOf('following') !== -1) {
                 const htmlToAppend = value.replace(/((\w*from\b\w*)|(\w*of\b\w*)).*(the\b\w*).*(following\b\w*)/, function (match, p1, p2) {
                     return `<span style="color: #bd4d06f0;">${match}</span>`;
                 })
-                $('#warnings').append(`<span>${htmlToAppend}</span></br>`);
+                $('#warnings').append(`<span>◉ ${htmlToAppend}</span><br/><hr/>`);
             } else {
-                $('#warnings').append(`<span>${value}</span></br>`);
+                $('#warnings').append(`<span>◉ ${value}</span><br/><hr/>`);
             }
 
         });
     } else {
-        $('#warnings').append(`<span class="text-success">No warnings</span></br>`);
+        $('#warnings').append(`<span class="text-success">No warnings</span><br/>`);
     }
 }

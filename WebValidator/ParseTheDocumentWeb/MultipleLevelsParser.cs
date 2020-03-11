@@ -14,9 +14,20 @@
         private List<string> _warningsPairs;
         public delegate void ParserErrorHandler(List<string> errorsPairs, List<string> warningsPairs);
         public event ParserErrorHandler CompletedNotify;
+        public List<string> ErrorsList
+        {
+            get { return _errorsList; }
+            set { _errorsList = value; }
+        }
+        public List<string> WarningsPairs
+        {
+            get { return _warningsPairs; }
+            set { _warningsPairs = value; }
+        }
 
 
-        public MultipleLevelsParser() {
+        public MultipleLevelsParser()
+        {
             _indexTemplate = $"1.1";
             _excelMapper = new Dictionary<string, string>();
             _errorsList = new List<string>();
@@ -24,110 +35,158 @@
         }
 
 
-        public void StartParse(string[] file) {
-            var indexTemplate = _indexTemplate;
-            var counterForDeep = -2;
-            var unitGlobal = 0;
-            for (int node = 0; node < file.Length; node++) {
-                if (!string.IsNullOrEmpty(file[node]))
-                {
-                    if (file[node].StartsWith("Unit"))
-                    {
-                        indexTemplate = _indexTemplate;
-                        indexTemplate += $".{(++unitGlobal).ToString()}";
+        public void StartParse(string[] file)
+        {
+            _excelMapper = new Dictionary<string, string>(file.Length);
+            _errorsList = new List<string>();
+            _warningsPairs = new List<string>();
+            var unitNumber = _indexTemplate;
+            var unitIndex = 0;
 
-                        var isOk = _excelMapper.TryGetValue(indexTemplate, out var result);
-                        if (!isOk)
+            BuildTree(0, "");
+
+            int BuildTree(int rowIndex, string parentNodeNumber)
+            {
+                var prevNodeNumber = string.Empty;
+                while (rowIndex < file.Length)
+                {
+                    if (file[rowIndex].StartsWith("Unit"))
+                    {
+                        unitNumber = $"{_indexTemplate}.{++unitIndex}";
+                        if (string.IsNullOrWhiteSpace(parentNodeNumber))
                         {
-                            _excelMapper.Add(indexTemplate, file[node]);
+                            _excelMapper.Add(unitNumber, file[rowIndex]);
+                            rowIndex = BuildTree(rowIndex + 1, unitNumber);
                         }
                         else
                         {
-                            _errorsList.Add($"◉ line - {node + 1}. Not unique content or invalid string: string - {file[node]}; ");
+                            return --rowIndex;
                         }
-                        counterForDeep = 0;
-                        continue;
                     }
-
-                    if (char.IsDigit(file[node][0]))
+                    else
                     {
-                        var depth = ParserExtension.GetCriterionNumberOfString(file[node]).Count(x => x == '.');
-                        if (depth == 0)
+
+                        var currentNodeNumber = ParserExtension.GetCriterionNumberOfString(file[rowIndex]);
+                        var currentNodeNumberFull = $"{unitNumber}.{currentNodeNumber}";
+                        int nestingLevelCurrent = currentNodeNumberFull.Count(x => x == '.');
+                        int nestingLevelPrev = prevNodeNumber.Count(x => x == '.');
+
+                        if (string.IsNullOrWhiteSpace(currentNodeNumber))
                         {
-                            var isOk = _excelMapper.TryGetValue(indexTemplate + $".{int.Parse(ParserExtension.GetTheCriterionNumber(file[node]))}", out var result);
-                            if (!isOk) {
-                                _excelMapper.Add(indexTemplate + $".{int.Parse(ParserExtension.GetTheCriterionNumber(file[node]))}", file[node]);
-                            }
-                            else {
-                                _errorsList.Add($"◉ line - {node + 1}. Not unique content or invalid string: string - {file[node]}; ");
-                            }
+                            _errorsList.Add($"◉ line - {rowIndex + 1}. String doesn't start with number");
                         }
-                        else if (depth > counterForDeep)
+                        else
                         {
-                            var nodeHasValue = BuildTree(node, ParserExtension.GetCriterionNumberOfString(file[node]), indexTemplate);
-                            if (nodeHasValue.HasValue)
+                            if (prevNodeNumber != string.Empty && (nestingLevelCurrent > nestingLevelPrev))
                             {
-                                node = nodeHasValue.Value;
+                                //current 1.1.1.3.1 prev 1.1.1.3 check 1.1.1.3==1.1.1.3
+                                if (!NumberingChecks.CheckRoot(prevNodeNumber, currentNodeNumberFull))
+                                {
+                                    _errorsList.Add($"line - { rowIndex + 1}. nesting does't match previous ?- {file[rowIndex]};");
+                                }
+                                rowIndex = BuildTree(rowIndex, prevNodeNumber);
+                            }
+                            else if (nestingLevelCurrent < nestingLevelPrev)
+                            {
+                                //current 1.1.1.4 prev 1.1.1.3.1 check 1.1.1 == 1.1.1 and 4>3
+                                if (!NumberingChecks.CheckNumberingPrev(prevNodeNumber, currentNodeNumberFull))
+                                {
+                                    _errorsList.Add($"line - { rowIndex + 1}. nesting does't match previous ?- {file[rowIndex]};");
+                                }
+                                return --rowIndex;
                             }
                             else
                             {
-                                break;
-                            }
-
-                            int? BuildTree(int nodeIndexNext, string indexForCurrentStringNext, string template)
-                            {
-                                template += $".{indexForCurrentStringNext}";
+                                //current 1.1.1.3.2 prev 1.1.1.3.1 check 1.1.1.3 == 1.1.1.3 and 2>1
+                                if (!NumberingChecks.CheckNumberingCurrent(prevNodeNumber, currentNodeNumberFull))
+                                {
+                                    _errorsList.Add($"line - { rowIndex + 1}. nesting does't match previous ?- {file[rowIndex]};");
+                                }
                                 try
                                 {
-                                    if(!char.IsDigit(file[nodeIndexNext][0]))
+                                    bool needCheckWarning = false;
+                                    bool haveError = false;
+
+                                    switch (ParserExtension.DoesNotHaveChild(file[rowIndex], currentNodeNumber, rowIndex + 1 >= file.Length ? null : file[rowIndex + 1]))//check  regexp
                                     {
-                                        throw new Exception();
+                                        case ParserExtension.State.UnCorrect:
+                                            _errorsList.Add($"line - {rowIndex + 1}.  line is not formatted correctly for concatenation ?- {file[rowIndex]}; ");
+                                            haveError = true;
+                                            break;
+                                        case ParserExtension.State.Correct:
+                                            break;
+                                        case ParserExtension.State.NeedCheckWarning:
+                                            switch (ParserExtension.DoesHaveChild(file[rowIndex], currentNodeNumber, rowIndex + 1 >= file.Length ? null : file[rowIndex + 1])) //check  regexp
+                                            {
+                                                case ParserExtension.State.UnCorrect:
+                                                    _errorsList.Add($"line - {rowIndex + 1}. line in the wrong format for children ?- {file[rowIndex]}; ");
+                                                    haveError = true;
+                                                    break;
+                                                case ParserExtension.State.Correct:
+                                                    break;
+                                                case ParserExtension.State.NeedCheckWarning:
+                                                    needCheckWarning = true;
+                                                    break;
+                                            }
+                                            break;
+                                    }
+                                    if (!haveError)//check  regexp
+                                    {
+                                        if (ParserExtension.InCorrectString(file[rowIndex]))
+                                        {
+                                            _errorsList.Add($"line - {rowIndex + 1}. check the content of current criteria ?- {file[rowIndex]}; ");
+                                            haveError = true;
+                                        }
+                                    }
+                                    if (!haveError && needCheckWarning)
+                                    {
+                                        if (!ParserExtension.CheckWarnings(file[rowIndex]))// check warning regexp
+                                        {
+                                            _warningsPairs.Add($"line - {rowIndex + 1}. check this line ?- {file[rowIndex]};");
+                                        }
                                     }
 
-                                    if (ParserExtension.DoesStringContainBoth(file[nodeIndexNext])) {
-                                        _warningsPairs.Add($"◉ line - {nodeIndexNext + 1}. Check: check both ?- {file[nodeIndexNext]}; ");
+                                    if (ParserExtension.ContainsDirtyInfo(file[rowIndex]))
+                                    {
+                                        _warningsPairs.Add($"line - {rowIndex + 1}. Check: maybe there useless information exists- {file[rowIndex]}; ");
                                     }
 
-                                    if (!ParserExtension.IsInOneLine(file[nodeIndexNext])) {
-                                        _warningsPairs.Add($"◉ line - {nodeIndexNext + 1}. Check: should not be in one line or vice versa ?- {file[nodeIndexNext]}; ");
-                                    }
-                                    if (!ParserExtension.IsValidContentForUnion(file[nodeIndexNext])) {
-                                        _warningsPairs.Add($"◉ line - {nodeIndexNext + 1}. Check: check the content of current criteria ?- {file[nodeIndexNext]}; ");
+                                    if (!currentNodeNumberFull.IsTemplateValid())
+                                    {
+                                        _errorsList.Add($"line - {rowIndex + 1}. Error: Template is not valid! Check the index at the beginning- {file[rowIndex]}; ");
                                     }
 
-                                    if (ParserExtension.ContainsDirtyInfo(file[nodeIndexNext])) {
-                                        _warningsPairs.Add($"◉ line - {nodeIndexNext + 1}. Check: maybe there useless information exists- {file[nodeIndexNext]}; ");
-                                    }
-
-                                    if (!template.IsTemplateValid()) {
-                                        _errorsList.Add($"◉ line - {nodeIndexNext + 1}. Error: Template is not valid! Check the index at the beginning- {file[nodeIndexNext]}; ");
-                                    
-                                    }
-
-                                    _excelMapper.Add(template, file[nodeIndexNext]);
+                                    //_excelMapper.Add(currentNodeNumberFull, file[rowIndex]);
                                 }
                                 catch (Exception e)
                                 {
-                                    _errorsList.Add($"◉ line - {nodeIndexNext + 1}. Not unique content or invalid string: string - {file[nodeIndexNext]}; ");
+                                    _errorsList.Add($"line - {rowIndex + 1}. Not unique content or invalid string: string - {file[rowIndex]}; ");
                                 }
-                                return nodeIndexNext + 1 < file.Length ?
-                                        file[nodeIndexNext + 1].Count(x => x == '.') >= file[nodeIndexNext].Count(x => x == '.') ?
-                                            BuildTree(nodeIndexNext + 1, ParserExtension.GetCriterionNumberOfString(file[nodeIndexNext + 1]), indexTemplate)
-                                        : nodeIndexNext
-                                    : null;
+
+                                prevNodeNumber = currentNodeNumberFull;
+                                if (!_excelMapper.ContainsKey(currentNodeNumberFull))
+                                {
+                                    _excelMapper.Add(currentNodeNumberFull, file[rowIndex]);
+                                }
+                                else
+                                {
+                                    _errorsList.Add($"line - {rowIndex + 1}. Not unique content or invalid string: string - {file[rowIndex]}; ");
+                                }
                             }
                         }
                     }
-                    else {
-                        _errorsList.Add($"◉ line - {node + 1}. String doesn't start with number");
-                    }
+
+                    rowIndex++;
                 }
+                return rowIndex;
             }
+
 
             this.OnParsingCompleted();
         }
 
-        private void OnParsingCompleted() {
+        private void OnParsingCompleted()
+        {
             CompletedNotify?.Invoke(_errorsList, _warningsPairs);
         }
     }

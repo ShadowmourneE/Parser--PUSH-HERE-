@@ -8,58 +8,35 @@
 
     public static class ParserExtension
     {
-        public static string[] ChildrenCriteriaLetters = new string[] { "a)", "b)", "c)", "d)", "e)" }; 
-        /// <summary>
-        /// Get the number from string by pattern like '[NUMBER] text'. It will return NUMBER
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        public static string GetTheCriterionNumber(string str)
+        //|(?:with)|(?:using)
+        //following childs
+        //public static string[] pattern1 = { "of", "from" };
+        public enum State
         {
-            var rootCriterion = new List<char>();
-            for (int i = 0; i < str.Length; i++)
-            {
-                if (char.IsDigit(str[i]))
-                {
-                    for (int j = i; j < str.Length; j++)
-                    {
-                        if (char.IsDigit(str[j]))
-                        {
-                            rootCriterion.Add(str[j]);
-                        }
-                        else
-                        {
-                            return new string(rootCriterion.ToArray());
-                        }
-                    }
-                }
-            }
-
-            return null;
+            UnCorrect,
+            Correct,
+            NeedCheckWarning
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pathToFile"></param>
-        /// <returns></returns>
-        public static IEnumerable<string> FileToCollection(string pathToFile)
+        public static Regex[] doesNotHaveChild = new Regex[]
         {
-            using (var sr = new StreamReader(pathToFile))
-            {
-                while (!sr.EndOfStream)
-                {
-                    yield return sr.ReadLine();
-                }
-            }
-        }
+            new Regex(@"((?:(?:of)|(?:from)|(?:with)|(?:using))\sthe\sfollowing)(.*(?:(?:plus)|(?:and)|(?:or)).*\s(?:(?:from)|(?:of)|(?:with)|(?:using))\sthe\sfollowing)", RegexOptions.Compiled|RegexOptions.IgnoreCase),
+            new Regex(@"(?:(?:one)|(?:two)|(?:three)|(?:four)|(?:five)|(?:six)|(?:seven)|(?:eight)|(?:nine)|(?:ten)|(?:eleven)|(?:twelve)|(?:more))\s(?:(?:of)|(?:from)|(?:with)|(?:using))\s(?:the\s)?following.*:?\s*•?\s*\w+", RegexOptions.Compiled|RegexOptions.IgnoreCase)
+        };
+        public static Regex[] doesHaveChild = new Regex[]
+        {
+            new Regex(@"((?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following:?\s*$)", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+            new Regex(@"((?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following.*:\s*$)", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+        };
+        public static Regex[] incorrectString = new Regex[]
+        {
+            new Regex(".*(following)|().*(plus.*)", RegexOptions.Compiled | RegexOptions.IgnoreCase)
+        };
+        public static Regex[] checkWarnings = new Regex[]
+        {
+            new Regex(".*(following).*", RegexOptions.Compiled | RegexOptions.IgnoreCase)
+        };
+        public static string[] ChildrenCriteriaLetters = new string[] { "a)", "b)", "c)", "d)", "e)" };
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pathToFile"></param>
-        /// <returns></returns>
         public static IEnumerable<string> FileToCollection(Stream stream)
         {
             using var sr = new StreamReader(stream);
@@ -76,60 +53,19 @@
         /// <returns></returns>
         public static string GetCriterionNumberOfString(string str)
         {
-            var built = new List<char>();
-            for (var i = 0; i < str.Length; i++)
-            {
-                if (Char.IsDigit(str[i]) || str[i] == '.')
-                {
-                    for (int j = i; j < str.Length; j++)
-                    {
-                        if (Char.IsDigit(str[j]) || str[j] == '.')
-                        {
-                            built.Add(str[j]);
-                        }
-                        else
-                        {
-                            return new string(built.ToArray());
-                        }
-                    }
-                }
-            }
-            return null;
+            var regex = new Regex(@"^\d[\d.]*");
+            Match result = regex.Match(str);
+            if (result.Success)
+                return result.Groups[0].Value;
+            else
+                return string.Empty;
         }
 
         /// <summary>
         /// Prepare entered text and join separated sentences
         /// </summary>
-        public static IEnumerable<string> PrepareEnteredTextAsTemplateToParse(string pathToFile)
+        public static bool ContainsDirtyInfo(string currentCriteria)
         {
-            var result = new List<string>();
-
-            var lines = File.ReadAllLines(pathToFile);
-            void VisitingFileToGlueLinesByMind(string buildingLine, string[] linesRec, int nextIndex)
-            {
-                if (nextIndex < linesRec.Length)
-                {
-                    if (linesRec[nextIndex].StartsWith("Unit") || (char.IsDigit(linesRec[nextIndex][0]/*TODO: This condition is not enough to make sure*/)))
-                    {
-                        result.Add(buildingLine);
-                        VisitingFileToGlueLinesByMind($"{linesRec[nextIndex]} ", linesRec, ++nextIndex);
-                    }
-                    else
-                    {
-                        VisitingFileToGlueLinesByMind($"{buildingLine + linesRec[nextIndex]} ", linesRec, ++nextIndex);
-                    }
-                }
-                else
-                {
-                    return;
-                }
-            }
-            VisitingFileToGlueLinesByMind(lines[0], lines, 1);
-
-            return result;
-        }
-
-        public static bool ContainsDirtyInfo(string currentCriteria) {
             //for example pages numeration of odd labels
             //like EAL-AUEC3-005-Issue-A-0816 7 of 7 -TODO: need to investigate and implement.
             //
@@ -144,74 +80,94 @@
         }
 
 
-        /// <summary>
-        /// This method checks if separating process is need
-        /// </summary>
-        /// <param name="currentCriteria"></param>
-        /// <returns></returns>
-        public static bool IsInOneLine(string currentCriteria) {
-            if ((currentCriteria.Contains("of") || currentCriteria.Contains("from"))
-                && currentCriteria.Contains("the") && currentCriteria.Contains("following")) {
-                
-                var words = GetWordsFromString(currentCriteria)
-                    .ToArray();
-                //first case
-                for (var i = 0; i < words.Length; i++)
-                {
-                    if ((i +1 < words.Length) && (i + 2 < words.Length) && (words[i] == "of" || words[i] == "from") && words[i + 1] == "the" && words[i + 2].Contains("following"))
-                    {
-                        if (words[i - 1].ToLowerInvariant() != "all" && words.All(x => !x.ContainsAny(ChildrenCriteriaLetters)))
-                        {
-                            //one of the following and etc
-                            return false;
-                        }
-                        else if(words[i - 1].ToLowerInvariant() == "all")
-                        {
-                            //if all of the following and in one line - throw warning
-                            for (var j = i; j < words.Length; j++)
-                            {
-                                if (words[j].ContainsAny(ChildrenCriteriaLetters))
-                                {
-                                    return false;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            return true;
-        }
-        //union string into one
-        public static bool IsValidContentForUnion(string currentCriteria) {
-            if ((currentCriteria.Contains("of") || currentCriteria.Contains("from"))
-               && currentCriteria.Contains("the") && currentCriteria.Contains("following"))
+        public static State DoesHaveChild(string currentCriteria, string currentRoot, string nextRoot)
+        {
+            bool nextRootIsCorrectly;
+            if (String.IsNullOrEmpty(nextRoot))
             {
-                var words = currentCriteria.Split(' ').Where(x => !string.IsNullOrEmpty(x)).ToArray();
-                if (words.Contains("Plus") || words.Contains("plus"))
+                nextRootIsCorrectly = true;
+            }
+            else
+            {
+                nextRoot = GetCriterionNumberOfString(nextRoot);
+                nextRootIsCorrectly = NumberingChecks.CheckRoot(currentRoot, nextRoot);
+            }
+            foreach (var regex in doesHaveChild)
+            {
+                var match = regex.Match(currentCriteria);
+                if (match.Success)
                 {
-                    //second case
-                    for (var i = 0; i < words.Length; i++)
+                    if (nextRootIsCorrectly)
                     {
-                        if (words[i].ToLower() == "plus")
-                        {
-                            for (int j = i; j < words.Length; j++)
-                            {
-                                if ((words[j] == "of" || words[j] == "from") && words[j + 1] == "the" && (words[j + 2].Contains("following")))
-                                {
-                                    return false;
-                                }
-                            }
-                        }
+                        return State.Correct;
+                    }
+                    else
+                    {
+                        return State.UnCorrect;
                     }
                 }
             }
-
-            return true;
+            return State.NeedCheckWarning;
         }
+        public static State DoesNotHaveChild(string currentCriteria, string currentRoot, string nextRoot)
+        {
+            bool nextRootIsUnCorrect;
+            if (String.IsNullOrEmpty(nextRoot) || nextRoot.StartsWith("Unit"))
+            {
+                nextRootIsUnCorrect = false;
+            }
+            else
+            {
+                nextRoot = GetCriterionNumberOfString(nextRoot);
+                nextRootIsUnCorrect = NumberingChecks.CheckRoot(currentRoot, nextRoot);
+            }
+            foreach (var regex in doesNotHaveChild)
+            {
+                var match = regex.Match(currentCriteria);
+                if (match.Success)
+                {
+                    if (nextRootIsUnCorrect)
+                    {
+                        return State.UnCorrect;
+                    }
+                    return State.Correct;
+                }
+            }
+            return State.NeedCheckWarning;
+        }
+        public static bool InCorrectString(string currentCriteria)
+        {
+            foreach (var regex in incorrectString)
+            {
+                var match = regex.Match(currentCriteria);
+                if (match.Success)
+                {
+                    if (String.IsNullOrEmpty(match.Groups[1].Value))
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            return false;
+        }
+        public static bool CheckWarnings(string currentCriteria)
+        {
+            foreach(var regex in checkWarnings)
+            {
+                var match = regex.Match(currentCriteria);
+                if (match.Success)
+                {
+                    if (!String.IsNullOrEmpty(match.Groups[1].Value))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        } 
+        //union string into one
 
-
-        public static bool DoesStringContainBoth(string str) => str.Contains("both the following");
 
         /// <summary>
         /// The 'both' via context should be separate too.
@@ -224,55 +180,6 @@
             var isValid = criteria.Split('.').Select((x) => int.TryParse(x, out var isParsed)).All(x => x);
 
             return isValid;
-        }
-
-        public static bool ContainsAny(this string str, string[] arrayStrings) {
-            for (var i = 0; i < arrayStrings.Length; i++) {
-                if (str.Contains(arrayStrings[i])) {
-                    return true;
-                }
-            }
-            return false;
-        }
-        /// <summary>
-        /// Returns a list of words with numbers without spaces
-        /// </summary>
-        /// <param name="sentence">string sentence</param>
-        /// <returns></returns>
-        /// NOTE: This method was written because there are different types of spaces not only ' ' or \t \s+ ... so it was 
-        /// easier to filter in this way rather using Split and LINQ filters.(speed too)
-        /// TODO: use Spans
-        public static List<string> GetWordsFromString(string sentence)
-        {
-            
-                var st = sentence.Trim();
-                var resultCollection = new List<string>();
-                string word = string.Empty;
-                for (int? i = 0; i < st.Length; i++) {
-                    if (!char.IsWhiteSpace(st[i.Value]))
-                    {
-                        for (int? j = i; j < st.Length; j++)
-                        {
-                            if (!char.IsWhiteSpace(st[j.Value]))
-                            {
-                                word += st[j.Value];
-                            }
-                            else
-                            {
-                                if (!string.IsNullOrEmpty(word))
-                                {
-                                    resultCollection.Add(word);
-                                }
-                                word = string.Empty;
-                                i = j;
-                                j = null;
-                            }
-                        }
-
-                    }
-                }
-            
-            return resultCollection;
         }
     }
 }
