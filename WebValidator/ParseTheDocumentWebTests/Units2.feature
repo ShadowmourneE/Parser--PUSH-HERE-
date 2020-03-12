@@ -27,7 +27,7 @@ Scenario: Unit 2
                          """
 	When parse
     #correctly p.1.3
-	Then the line should be have message: 5
+	Then the line 5 should have message
 Scenario: Unit 3
      Given I have entered:
                          """
@@ -63,7 +63,7 @@ Scenario: Unit 4
                          """
 	When parse
     #correctly p.1.3
-	Then the line should be have message: 7
+	Then the line 7 should have message
 Scenario: Unit 5
      Given I have entered:
                          """
@@ -82,4 +82,91 @@ Scenario: Unit 6
 	When parse
     #correctly p.1.3
 	Then the lines should be correctly
+Scenario: Unit 7
+     Given I have entered:
+                         """
+2 Understand how to Determine Welding and Related Technical Requirements to Achieve Objectives 
+2. 1 Explain the specific safety precautions to be taken when working in a welding and related environment (such as specific legislation or regulations governing the activities or work area, safe working practices and procedures to be adopted, general workshop and site safety practice, risk assessment procedures and relevant requirements of HASAWA, COSHH and Work Equipment Regulations)  
+2. 2 Explain the personal protective clothing and equipment that should be worn (such as eye protection, ear and head  protection) 
+2. 3 Explain the hazards associated with working in a welding environment (such as electric arc flashes; fumes and gases; hot metal; grinding and mechanical metal/slag removal), and explain how they can be minimised 
+2. 4 Explain the welding processes being used, and their technology (such as basic principles of fusion welding, AC and DC power sources, power ranges, manual metal arc (MMA), MIG, MAG or cored-wire arc welding, tungsten arc welding (TIG), submerged arc, gas and plasma welding, electron beam, resistance welding, laser and friction welding and other relevant fusion welding processes) 
+2. 5 Explain how the various materials behave during welding (such as structure and property of metals; heat treatment requirements; types of steel and cracking phenomena, cast iron, copper, nickel, stainless steel, aluminium and their alloys; joining dissimilar materials) 
+2. 6 Explain the construction and design of welded joints (such as design principles of welded construction, joint design, behaviour of welded structures under static and dynamic loading) 
+2. 7 Explain the general principles of welding components and structures (such as use of jigs, fixtures and manipulating devices; residual stresses and distortion; types of defect and their avoidance; quality control during manufacture) 
+2. 8 Explain the types and features of welded joints in plate, tube and sections (including fillet and butt welds, single and multi-run welds, welding positions, weld quality)  
+2. 9 Explain how to obtain the required information on welding and related activities, and the types of information that will be available 
+2. 10 Explain how to access and use the appropriate information and documentation systems, and their organisation’s regulations, guidelines and procedures  
+2. 11 Explain how to extract the information required from drawings and welding procedure specifications (such as interpretation of welding symbols; scope, content and application of the welding procedure specification) to include symbols and conventions to appropriate British, European or relevant International standards in relation to work undertaken 
+2. 12 Explain the codes and conventions that are used in the welding specifications 
+2. 13 Explain the factors to be taken into account when determining the welding technical requirements, especially those relating to health and safety and working conditions 
+2. 14 Explain the types of data that should be included in the technical information  
+2. 15 Explain the types of resource that are associated with the different types of welding and related activities 
+2. 16 Explain the importance of maintaining records of the technical requirements; what needs to be recorded, and where records are kept 
+2. 17 Explain who needs to be informed about the welding technical requirements  
+2. 18 Explain the organisational procedures for providing information to different people, and the various ways of presenting this information  
+2. 19 Explain the importance of providing the right information at the right time  
+2. 20 Explain the types of problem that can occur when identifying the welding technical requirements and how to avoid them 
+2. 21 Explain the extent of their own responsibility, and explain to whom they should report if they have problems that they cannot resolve   
+                         """
+	When parse
+    #correctly p.1.3
+	Then the line 2 should have message
+Scenario: Unit 8
+    Given I have entered:
+                         """
+                         1.4 Set standards and guidelines for situations where information, resources or equipment is missing or is in surplus and where improvements can be made
+                         """
+	When parse
+	Then the lines should be correctly
+Scenario: Unit 9
+    Given I have entered:
+                         """
+1 Work safely at all times, complying with health and safety and other relevant regulations, directives and guidelines   
+2 Lead a maintenance team by carrying out all the following:   a) communicate the maintenance activities to the team   b) involve the team in planning how the maintenance activities will be undertaken   c) allocate specific maintenance activities to each team member    d) involve the team in identifying improvements that could be made to the maintenance process and/or procedures    e) encourage the team and/or individuals to take the lead where appropriate   
+3 Produce and update relevant maintenance schedules and plans    
+4 Review and update maintenance procedures and plans to include three the following:   a) preventive maintenance (routine inspections, and adjustments)   b) corrective maintenance (activities identified from preventative maintenance activities)   c) predictive maintenance (analysis of the equipment’s condition)   d) reactive maintenance (unexpected equipment/component failure)   e) maintenance prevention (equipment/component design and development)   plus supporting documentation associated with two of the following   f) equipment performance   g) equipment downtime/failure   h) overall equipment effectiveness (OEE)   i) maintenance costs   j) health and safety   k) staff development and training   l) maintenance procedures/instructions   m) operator manuals/working instructions   n) regulatory compliance   
+5 Lead maintenance activities within the limits of their personal authority   
+6 Carry out the maintenance activities in the specified sequence and in an agreed timescale
+                         """
+	When parse
+	Then the line 2 should have message
+Scenario: Unit 10
+    Given I have entered:
+                         """
+1 Work safely at all times, complying with health and safety and other relevant regulations, directives and guidelines   
+2 Lead a maintenance team by carrying out all the following:
+2.1 communicate the maintenance activities to the team 
+                         """
+	When parse
+	Then the lines should be correctly
+Scenario: Unit 11
+    Given I have entered:
+                         """
+1.7 Identify the hazards and risks that are associated with the following: a) their working environment b) the equipment that they use c) materials and substances (where appropriate) that they use d) working practices that do not follow laid-down procedures
+                         """
+	When parse
+	Then the lines should be correctly
+Scenario: Unit 12
+    Given I have entered:
+                         """
+1.3 Determine organisational availability of in-house equipment against the planned manufacturing layout to include both of the following: a) shared existing resource b) freely available resource
+                         """
+	When parse
+	Then the line 1 should have message
+Scenario: Unit 13
+    Given I have entered:
+                         """
+2 Lead a maintenance team by carrying out all the following:   a) communicate the maintenance activities to the team   b) involve the team in planning how the maintenance activities will be undertaken   c) allocate specific maintenance activities to each team member    d) involve the team in identifying improvements that could be made to the maintenance process and/or procedures    e) encourage the team and/or individuals to take the lead where appropriate   
+                         """
+	When parse
+	Then the line 1 should have message
+Scenario: Unit 14
+    Given I have entered:
+                         """
+1.5 Comply with emergency requirements, to include: a) identifying the appropriate qualified first aiders and the location of first aid facilities b) identifying the procedures to be followed in the event of injury to themselves or others c) following organisational procedures in the event of fire and the evacuation of premises d) identifying the procedures to be followed in the event of dangerous occurrences or hazardous malfunctions of equipment
+                         """
+	When parse
+	Then the lines should be correctly
+
+
    

@@ -9,7 +9,8 @@ Scenario: CheckRoot
                          1.1.1.2.1 Work safely at all times, complying with health and safety legislation, regulations and other relevant guidelines
                          """
 	When parse
-	Then the line should be have message: line - 2. nesting does't match previous
+    Then the line 2 should have message
+	#Then the line 2 should be have message: line - 2. nesting does't match previous
 Scenario: CheckNumberingPrev
     #current 1.1.1.4 prev 1.1.1.3.1 check 1.1.1 == 1.1.1 and 4>3
     Given I have entered:
@@ -18,7 +19,8 @@ Scenario: CheckNumberingPrev
                          1.1.1.2 Work safely at all times, complying with health and safety legislation, regulations and other relevant guidelines
                          """
 	When parse
-	Then the line should be have message: line - 2. nesting does't match previous
+    Then the line 2 should have message
+	#Then the line should be have message: line - 2. nesting does't match previous
 Scenario: CheckNumberingCurrent
     #current 1.1.1.3.2 prev 1.1.1.3.1 check 1.1.1.3 == 1.1.1.3 and 2>1
     Given I have entered:
@@ -27,7 +29,8 @@ Scenario: CheckNumberingCurrent
                          1.1.1.3.1 Work safely at all times, complying with health and safety legislation, regulations and other relevant guidelines
                          """
 	When parse
-	Then the line should be have message: line - 2. nesting does't match previous
+	Then the line 2 should have message
+    #Then the line should be have message: line - 2. nesting does't match previous
 Scenario: CheckNumberingCurrent with Unit
     Given I have entered:
                          """
@@ -36,4 +39,5 @@ Scenario: CheckNumberingCurrent with Unit
                          1.1.1.3.1 Work safely at all times, complying with health and safety legislation, regulations and other relevant guidelines
                          """
 	When parse
-	Then the line should be have message: line - 3. nesting does't match previous
+	Then the line 3 should have message
+    #Then the line should be have message: line - 3. nesting does't match previous

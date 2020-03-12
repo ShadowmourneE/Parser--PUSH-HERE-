@@ -34,20 +34,11 @@ namespace ParseTheDocumentWebTests
         {
             Assert.IsFalse(SearchMessage());
         }
-        [Then(@"the line should be correctly: (.*)")]
-        public void ThenTheLineShouldBeCorrectly(string line)
+        [Then(@"the line (\d+) should have message")]
+        public void ThenTheLineShouldBeHaveMessage(int row)
         {
-            Assert.IsFalse(FindMessageByLine(line));
-        }
-        [Then(@"the lines should be have message")]
-        public void ThenTheErrorsShouldBeHaveMessage()
-        {
-            Assert.IsTrue(SearchMessage());
-        }
-        [Then(@"the line should be have message: (.*)")]
-        public void ThenTheLineShouldBeHaveMessage(string message)
-        {
-            Assert.IsTrue(FindMessage(message));
+            var message = FindMessage(row);
+            Assert.IsTrue(!string.IsNullOrEmpty(message), message);
         }
         public bool SearchMessage()
         {
@@ -58,6 +49,7 @@ namespace ParseTheDocumentWebTests
             }
             return isExist;
         }
+
         public bool FindError(string line)
         {
             var regex = new Regex("line - " + line + ".");
@@ -82,17 +74,17 @@ namespace ParseTheDocumentWebTests
             }
             return false;
         }
-        public bool FindMessage(string message)
+        public string FindMessage(int row)
         {
-            var regex = new Regex(message);
+            var regex = new Regex(row.ToString());
             foreach (var error in messages)
             {
                 if (regex.Match(error).Success)
                 {
-                    return true;
+                    return error;
                 }
             }
-            return false;
+            return string.Empty;
         }
         public bool FindMessageByLine(string line)
         {

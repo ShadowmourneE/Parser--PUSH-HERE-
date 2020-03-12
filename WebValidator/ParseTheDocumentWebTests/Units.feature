@@ -19,7 +19,7 @@ Scenario: Unit 1
                          """
 	When parse
     #correctly p.1.3
-	Then the line should be correctly: 4  
+	Then the lines should be correctly
 Scenario: Unit 2
     Given I have entered:
                          """
@@ -31,7 +31,7 @@ Scenario: Unit 2
                          """
 	When parse
     #wrong p.1.3
-	Then the line should be have message: 4
+	Then the line 4 should have message
 Scenario: Unit 3
     Given I have entered:
                          """
@@ -57,7 +57,7 @@ Scenario: Unit 4
                          """
 	When parse
     #wrong  1.3
-	Then the line 2 should have message
+	Then the line 4 should have message
 Scenario: Unit 5
     Given I have entered:
                          """
@@ -66,11 +66,4 @@ Scenario: Unit 5
                          """
 	When parse
     #wrong  1.3
-	Then the line should be correctly: 2
-Scenario: Unit 6
-    Given I have entered:
-                         """
-                         1.4 Set standards and guidelines for situations where information, resources or equipment is missing or is in surplus and where improvements can be made
-                         """
-	When parse
 	Then the lines should be correctly

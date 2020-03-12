@@ -157,7 +157,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 30
- testRunner.Then("the line should be have message: 5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the line 5 should have message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -274,7 +274,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 66
- testRunner.Then("the line should be have message: 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the line 7 should have message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -357,6 +357,392 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 84
+ testRunner.Then("the lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Unit 7")]
+        public virtual void Unit7()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 7", null, ((string[])(null)));
+#line 85
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 86
+     testRunner.Given("I have entered:", "2 Understand how to Determine Welding and Related Technical Requirements to Achie" +
+                        "ve Objectives \r\n2. 1 Explain the specific safety precautions to be taken when wo" +
+                        "rking in a welding and related environment (such as specific legislation or regu" +
+                        "lations governing the activities or work area, safe working practices and proced" +
+                        "ures to be adopted, general workshop and site safety practice, risk assessment p" +
+                        "rocedures and relevant requirements of HASAWA, COSHH and Work Equipment Regulati" +
+                        "ons)  \r\n2. 2 Explain the personal protective clothing and equipment that should " +
+                        "be worn (such as eye protection, ear and head  protection) \r\n2. 3 Explain the ha" +
+                        "zards associated with working in a welding environment (such as electric arc fla" +
+                        "shes; fumes and gases; hot metal; grinding and mechanical metal/slag removal), a" +
+                        "nd explain how they can be minimised \r\n2. 4 Explain the welding processes being " +
+                        "used, and their technology (such as basic principles of fusion welding, AC and D" +
+                        "C power sources, power ranges, manual metal arc (MMA), MIG, MAG or cored-wire ar" +
+                        "c welding, tungsten arc welding (TIG), submerged arc, gas and plasma welding, el" +
+                        "ectron beam, resistance welding, laser and friction welding and other relevant f" +
+                        "usion welding processes) \r\n2. 5 Explain how the various materials behave during " +
+                        "welding (such as structure and property of metals; heat treatment requirements; " +
+                        "types of steel and cracking phenomena, cast iron, copper, nickel, stainless stee" +
+                        "l, aluminium and their alloys; joining dissimilar materials) \r\n2. 6 Explain the " +
+                        "construction and design of welded joints (such as design principles of welded co" +
+                        "nstruction, joint design, behaviour of welded structures under static and dynami" +
+                        "c loading) \r\n2. 7 Explain the general principles of welding components and struc" +
+                        "tures (such as use of jigs, fixtures and manipulating devices; residual stresses" +
+                        " and distortion; types of defect and their avoidance; quality control during man" +
+                        "ufacture) \r\n2. 8 Explain the types and features of welded joints in plate, tube " +
+                        "and sections (including fillet and butt welds, single and multi-run welds, weldi" +
+                        "ng positions, weld quality)  \r\n2. 9 Explain how to obtain the required informati" +
+                        "on on welding and related activities, and the types of information that will be " +
+                        "available \r\n2. 10 Explain how to access and use the appropriate information and " +
+                        "documentation systems, and their organisation’s regulations, guidelines and proc" +
+                        "edures  \r\n2. 11 Explain how to extract the information required from drawings an" +
+                        "d welding procedure specifications (such as interpretation of welding symbols; s" +
+                        "cope, content and application of the welding procedure specification) to include" +
+                        " symbols and conventions to appropriate British, European or relevant Internatio" +
+                        "nal standards in relation to work undertaken \r\n2. 12 Explain the codes and conve" +
+                        "ntions that are used in the welding specifications \r\n2. 13 Explain the factors t" +
+                        "o be taken into account when determining the welding technical requirements, esp" +
+                        "ecially those relating to health and safety and working conditions \r\n2. 14 Expla" +
+                        "in the types of data that should be included in the technical information  \r\n2. " +
+                        "15 Explain the types of resource that are associated with the different types of" +
+                        " welding and related activities \r\n2. 16 Explain the importance of maintaining re" +
+                        "cords of the technical requirements; what needs to be recorded, and where record" +
+                        "s are kept \r\n2. 17 Explain who needs to be informed about the welding technical " +
+                        "requirements  \r\n2. 18 Explain the organisational procedures for providing inform" +
+                        "ation to different people, and the various ways of presenting this information  " +
+                        "\r\n2. 19 Explain the importance of providing the right information at the right t" +
+                        "ime  \r\n2. 20 Explain the types of problem that can occur when identifying the we" +
+                        "lding technical requirements and how to avoid them \r\n2. 21 Explain the extent of" +
+                        " their own responsibility, and explain to whom they should report if they have p" +
+                        "roblems that they cannot resolve   ", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 111
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 113
+ testRunner.Then("the line 2 should have message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Unit 8")]
+        public virtual void Unit8()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 8", null, ((string[])(null)));
+#line 114
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 115
+    testRunner.Given("I have entered:", "1.4 Set standards and guidelines for situations where information, resources or e" +
+                        "quipment is missing or is in surplus and where improvements can be made", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 119
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 120
+ testRunner.Then("the lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Unit 9")]
+        public virtual void Unit9()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 9", null, ((string[])(null)));
+#line 121
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 122
+    testRunner.Given("I have entered:", "1 Work safely at all times, complying with health and safety and other relevant r" +
+                        "egulations, directives and guidelines   \r\n2 Lead a maintenance team by carrying " +
+                        "out all the following:   a) communicate the maintenance activities to the team  " +
+                        " b) involve the team in planning how the maintenance activities will be undertak" +
+                        "en   c) allocate specific maintenance activities to each team member    d) invol" +
+                        "ve the team in identifying improvements that could be made to the maintenance pr" +
+                        "ocess and/or procedures    e) encourage the team and/or individuals to take the " +
+                        "lead where appropriate   \r\n3 Produce and update relevant maintenance schedules a" +
+                        "nd plans    \r\n4 Review and update maintenance procedures and plans to include th" +
+                        "ree the following:   a) preventive maintenance (routine inspections, and adjustm" +
+                        "ents)   b) corrective maintenance (activities identified from preventative maint" +
+                        "enance activities)   c) predictive maintenance (analysis of the equipment’s cond" +
+                        "ition)   d) reactive maintenance (unexpected equipment/component failure)   e) m" +
+                        "aintenance prevention (equipment/component design and development)   plus suppor" +
+                        "ting documentation associated with two of the following   f) equipment performan" +
+                        "ce   g) equipment downtime/failure   h) overall equipment effectiveness (OEE)   " +
+                        "i) maintenance costs   j) health and safety   k) staff development and training " +
+                        "  l) maintenance procedures/instructions   m) operator manuals/working instructi" +
+                        "ons   n) regulatory compliance   \r\n5 Lead maintenance activities within the limi" +
+                        "ts of their personal authority   \r\n6 Carry out the maintenance activities in the" +
+                        " specified sequence and in an agreed timescale", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 131
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 132
+ testRunner.Then("the line 2 should have message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Unit 10")]
+        public virtual void Unit10()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 10", null, ((string[])(null)));
+#line 133
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 134
+    testRunner.Given("I have entered:", "1 Work safely at all times, complying with health and safety and other relevant r" +
+                        "egulations, directives and guidelines   \r\n2 Lead a maintenance team by carrying " +
+                        "out all the following:\r\n2.1 communicate the maintenance activities to the team ", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 140
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 141
+ testRunner.Then("the lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Unit 11")]
+        public virtual void Unit11()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 11", null, ((string[])(null)));
+#line 142
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 143
+    testRunner.Given("I have entered:", @"1.7 Identify the hazards and risks that are associated with the following: a) their working environment b) the equipment that they use c) materials and substances (where appropriate) that they use d) working practices that do not follow laid-down procedures", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 147
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 148
+ testRunner.Then("the lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Unit 12")]
+        public virtual void Unit12()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 12", null, ((string[])(null)));
+#line 149
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 150
+    testRunner.Given("I have entered:", "1.3 Determine organisational availability of in-house equipment against the plann" +
+                        "ed manufacturing layout to include both of the following: a) shared existing res" +
+                        "ource b) freely available resource", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 154
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 155
+ testRunner.Then("the line 1 should have message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Unit 13")]
+        public virtual void Unit13()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 13", null, ((string[])(null)));
+#line 156
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 157
+    testRunner.Given("I have entered:", @"2 Lead a maintenance team by carrying out all the following:   a) communicate the maintenance activities to the team   b) involve the team in planning how the maintenance activities will be undertaken   c) allocate specific maintenance activities to each team member    d) involve the team in identifying improvements that could be made to the maintenance process and/or procedures    e) encourage the team and/or individuals to take the lead where appropriate   ", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 161
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 162
+ testRunner.Then("the line 1 should have message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Unit 14")]
+        public virtual void Unit14()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 14", null, ((string[])(null)));
+#line 163
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 164
+    testRunner.Given("I have entered:", @"1.5 Comply with emergency requirements, to include: a) identifying the appropriate qualified first aiders and the location of first aid facilities b) identifying the procedures to be followed in the event of injury to themselves or others c) following organisational procedures in the event of fire and the evacuation of premises d) identifying the procedures to be followed in the event of dangerous occurrences or hazardous malfunctions of equipment", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 168
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 169
  testRunner.Then("the lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

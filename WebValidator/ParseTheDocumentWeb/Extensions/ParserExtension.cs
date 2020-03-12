@@ -17,23 +17,26 @@
             Correct,
             NeedCheckWarning
         }
+        //((?!both)&&(?!all)\s+)
         public static Regex[] doesNotHaveChild = new Regex[]
         {
-            new Regex(@"((?:(?:of)|(?:from)|(?:with)|(?:using))\sthe\sfollowing)(.*(?:(?:plus)|(?:and)|(?:or)).*\s(?:(?:from)|(?:of)|(?:with)|(?:using))\sthe\sfollowing)", RegexOptions.Compiled|RegexOptions.IgnoreCase),
-            new Regex(@"(?:(?:one)|(?:two)|(?:three)|(?:four)|(?:five)|(?:six)|(?:seven)|(?:eight)|(?:nine)|(?:ten)|(?:eleven)|(?:twelve)|(?:more))\s(?:(?:of)|(?:from)|(?:with)|(?:using))\s(?:the\s)?following.*:?\s*•?\s*\w+", RegexOptions.Compiled|RegexOptions.IgnoreCase)
+            new Regex(@"(((of)|(from)|(with)|(using))\s+(the\s+)?following)(.*\s+((plus)|(and)|(or)).*\s+((from)|(of)|(with)|(using))\sthe\sfollowing)", RegexOptions.Compiled|RegexOptions.IgnoreCase),
+            new Regex(@"(((include)(with)|(using)\s+)?((one)|(two)|(three)|(four)|(five)|(six)|(seven)|(eight)|(nine)|(ten)|(eleven)|(twelve)|(more))\s+)?((of)|(from)|(with)|(using))\s+(the\s+)?following.*:\s*•?\s*\w+", RegexOptions.Compiled|RegexOptions.IgnoreCase),
+            new Regex(@"include:(\s+\w+)+", RegexOptions.Compiled|RegexOptions.IgnoreCase)
         };
         public static Regex[] doesHaveChild = new Regex[]
         {
-            new Regex(@"((?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following:?\s*$)", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-            new Regex(@"((?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following.*:\s*$)", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+            new Regex(@"(.*)(?!following)(.*)(?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following(?!.*following.*)", RegexOptions.Compiled | RegexOptions.IgnoreCase)
+            //new Regex(@"((all)|(both))\s+((from)|(of)\s+)?the\s+following.*:\s*$", RegexOptions.Compiled | RegexOptions.IgnoreCase)
         };
         public static Regex[] incorrectString = new Regex[]
         {
-            new Regex(".*(following)|().*(plus.*)", RegexOptions.Compiled | RegexOptions.IgnoreCase)
+            new Regex(@"(.*?!following.*)(plus.*)", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+            new Regex(@"(.*)(?!following)(.*)(?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following[^)\d]*(?:([abcd]\))|(\d+(\.\d+)*))(?!.*following.*)", RegexOptions.Compiled | RegexOptions.IgnoreCase)
         };
         public static Regex[] checkWarnings = new Regex[]
         {
-            new Regex(".*(following).*", RegexOptions.Compiled | RegexOptions.IgnoreCase)
+            new Regex(@".*(following).*", RegexOptions.Compiled | RegexOptions.IgnoreCase)
         };
         public static string[] ChildrenCriteriaLetters = new string[] { "a)", "b)", "c)", "d)", "e)" };
 
@@ -53,7 +56,7 @@
         /// <returns></returns>
         public static string GetCriterionNumberOfString(string str)
         {
-            var regex = new Regex(@"^\d[\d.]*");
+            var regex = new Regex(@"^\d(\.\d+)*");
             Match result = regex.Match(str);
             if (result.Success)
                 return result.Groups[0].Value;
@@ -142,18 +145,14 @@
                 var match = regex.Match(currentCriteria);
                 if (match.Success)
                 {
-                    if (String.IsNullOrEmpty(match.Groups[1].Value))
-                    {
-                        return true;
-                    }
-                    return false;
+                    return true;
                 }
             }
             return false;
         }
         public static bool CheckWarnings(string currentCriteria)
         {
-            foreach(var regex in checkWarnings)
+            foreach (var regex in checkWarnings)
             {
                 var match = regex.Match(currentCriteria);
                 if (match.Success)
@@ -165,7 +164,7 @@
                 }
             }
             return true;
-        } 
+        }
         //union string into one
 
 

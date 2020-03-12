@@ -65,7 +65,6 @@
                     }
                     else
                     {
-
                         var currentNodeNumber = ParserExtension.GetCriterionNumberOfString(file[rowIndex]);
                         var currentNodeNumberFull = $"{unitNumber}.{currentNodeNumber}";
                         int nestingLevelCurrent = currentNodeNumberFull.Count(x => x == '.');
@@ -73,7 +72,7 @@
 
                         if (string.IsNullOrWhiteSpace(currentNodeNumber))
                         {
-                            _errorsList.Add($"◉ line - {rowIndex + 1}. String doesn't start with number");
+                            _errorsList.Add($"line - {rowIndex + 1}. String doesn't start with number");
                         }
                         else
                         {
@@ -107,7 +106,7 @@
                                     bool needCheckWarning = false;
                                     bool haveError = false;
 
-                                    switch (ParserExtension.DoesNotHaveChild(file[rowIndex], currentNodeNumber, rowIndex + 1 >= file.Length ? null : file[rowIndex + 1]))//check  regexp
+                                    switch (ParserExtension.DoesHaveChild(file[rowIndex], currentNodeNumber, rowIndex + 1 >= file.Length ? null : file[rowIndex + 1]))//check  regexp
                                     {
                                         case ParserExtension.State.UnCorrect:
                                             _errorsList.Add($"line - {rowIndex + 1}.  line is not formatted correctly for concatenation ?- {file[rowIndex]}; ");
@@ -116,13 +115,16 @@
                                         case ParserExtension.State.Correct:
                                             break;
                                         case ParserExtension.State.NeedCheckWarning:
-                                            switch (ParserExtension.DoesHaveChild(file[rowIndex], currentNodeNumber, rowIndex + 1 >= file.Length ? null : file[rowIndex + 1])) //check  regexp
+                                            needCheckWarning = true;
+                                            switch (ParserExtension.DoesNotHaveChild(file[rowIndex], currentNodeNumber, rowIndex + 1 >= file.Length ? null : file[rowIndex + 1])) //check  regexp
                                             {
                                                 case ParserExtension.State.UnCorrect:
                                                     _errorsList.Add($"line - {rowIndex + 1}. line in the wrong format for children ?- {file[rowIndex]}; ");
                                                     haveError = true;
+                                                    needCheckWarning = false;
                                                     break;
                                                 case ParserExtension.State.Correct:
+                                                    needCheckWarning = false;
                                                     break;
                                                 case ParserExtension.State.NeedCheckWarning:
                                                     needCheckWarning = true;
@@ -134,7 +136,7 @@
                                     {
                                         if (ParserExtension.InCorrectString(file[rowIndex]))
                                         {
-                                            _errorsList.Add($"line - {rowIndex + 1}. check the content of current criteria ?- {file[rowIndex]}; ");
+                                            _errorsList.Add($"line - {rowIndex + 1}. incorrect string ?- {file[rowIndex]}; ");
                                             haveError = true;
                                         }
                                     }
@@ -160,7 +162,7 @@
                                 }
                                 catch (Exception e)
                                 {
-                                    _errorsList.Add($"line - {rowIndex + 1}. Not unique content or invalid string: string - {file[rowIndex]}; ");
+                                    _errorsList.Add($"line - {rowIndex + 1}. Not unique content or invalid string: string - {file[rowIndex]};");
                                 }
 
                                 prevNodeNumber = currentNodeNumberFull;
@@ -170,7 +172,10 @@
                                 }
                                 else
                                 {
-                                    _errorsList.Add($"line - {rowIndex + 1}. Not unique content or invalid string: string - {file[rowIndex]}; ");
+                                    if(!_errorsList.Contains($"line - { rowIndex + 1}. nesting does't match previous ?- {file[rowIndex]};)"))
+                                    {
+                                        _errorsList.Add($"line - {rowIndex + 1}. Not unique content or invalid string: string - {file[rowIndex]}; ");
+                                    }
                                 }
                             }
                         }

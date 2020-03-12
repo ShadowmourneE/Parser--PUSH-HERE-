@@ -29,6 +29,8 @@ namespace ParseTheDocumentWeb.Extensions
         {
             if (String.IsNullOrEmpty(prev))
                 return true;
+            if (String.IsNullOrEmpty(current))
+                return true;
             var prevNumbering = prev.Split('.').
                 Select(n => int.Parse(n)).
                 ToArray();
@@ -49,6 +51,8 @@ namespace ParseTheDocumentWeb.Extensions
         public static bool CheckNumberingCurrent(string prev, string current)
         {
             if (String.IsNullOrEmpty(prev))
+                return true;
+            if (String.IsNullOrEmpty(current))
                 return true;
             var prevNumbering = prev.Split('.').
                 Select(n => int.Parse(n)).
