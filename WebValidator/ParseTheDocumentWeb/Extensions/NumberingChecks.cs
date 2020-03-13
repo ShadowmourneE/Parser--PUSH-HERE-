@@ -11,9 +11,7 @@ namespace ParseTheDocumentWeb.Extensions
         //Example: current 1.1.1.3.1 prev 1.1.1.3 check 1.1.1.3==1.1.1.3
         public static bool CheckRoot(string prev, string current)
         {
-            if (String.IsNullOrEmpty(prev))
-                return true;
-            if (String.IsNullOrEmpty(current))
+            if (String.IsNullOrEmpty(prev) || String.IsNullOrEmpty(current))
                 return true;
             var prevNumbering = prev.Split('.').
                 Select(n => int.Parse(n)).
@@ -27,9 +25,7 @@ namespace ParseTheDocumentWeb.Extensions
         //Example: current 1.1.1.4 prev 1.1.1.3.1 check 1.1.1 == 1.1.1 and 4>3
         public static bool CheckNumberingPrev(string prev, string current)
         {
-            if (String.IsNullOrEmpty(prev))
-                return true;
-            if (String.IsNullOrEmpty(current))
+            if (String.IsNullOrEmpty(prev) || String.IsNullOrEmpty(current))
                 return true;
             var prevNumbering = prev.Split('.').
                 Select(n => int.Parse(n)).
@@ -50,9 +46,7 @@ namespace ParseTheDocumentWeb.Extensions
         //Example: current 1.1.1.3.2 prev 1.1.1.3.1 check 1.1.1.3 == 1.1.1.3 and 2>1
         public static bool CheckNumberingCurrent(string prev, string current)
         {
-            if (String.IsNullOrEmpty(prev))
-                return true;
-            if (String.IsNullOrEmpty(current))
+            if (String.IsNullOrEmpty(prev) || String.IsNullOrEmpty(current))
                 return true;
             var prevNumbering = prev.Split('.').
                 Select(n => int.Parse(n)).

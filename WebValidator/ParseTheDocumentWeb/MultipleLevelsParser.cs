@@ -105,7 +105,6 @@
                                 {
                                     bool needCheckWarning = false;
                                     bool haveError = false;
-
                                     switch (ParserExtension.DoesHaveChild(file[rowIndex], currentNodeNumber, rowIndex + 1 >= file.Length ? null : file[rowIndex + 1]))//check  regexp
                                     {
                                         case ParserExtension.State.UnCorrect:
@@ -147,7 +146,6 @@
                                             _warningsPairs.Add($"line - {rowIndex + 1}. check this line ?- {file[rowIndex]};");
                                         }
                                     }
-
                                     if (ParserExtension.ContainsDirtyInfo(file[rowIndex]))
                                     {
                                         _warningsPairs.Add($"line - {rowIndex + 1}. Check: maybe there useless information exists- {file[rowIndex]}; ");
@@ -172,7 +170,7 @@
                                 }
                                 else
                                 {
-                                    if(!_errorsList.Contains($"line - { rowIndex + 1}. nesting does't match previous ?- {file[rowIndex]};)"))
+                                    if (!_errorsList.Contains($"line - { rowIndex + 1}. nesting does't match previous ?- {file[rowIndex]};"))
                                     {
                                         _errorsList.Add($"line - {rowIndex + 1}. Not unique content or invalid string: string - {file[rowIndex]}; ");
                                     }

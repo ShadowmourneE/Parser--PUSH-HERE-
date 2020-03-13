@@ -167,6 +167,26 @@ Scenario: Unit 14
                          """
 	When parse
 	Then the lines should be correctly
-
-
+Scenario: Unit 15
+    Given I have entered:
+                         """
+1.2 aasdfasdfasdf all of the following adfasdf following adsfasdf asdfa
+                         """
+	When parse
+    Then the line 1 should have message
+Scenario: Unit 16
+    Given I have entered:
+                         """
+1.8 Use appropriate dismantling and re-assembly techniques to deal with three of the following technologies: Mechanical equipment: Carry out all of the following: a) draining and replenishing fluids b) removing and refitting/replacing locking and retaining devices c) proof marking components to aid reassembly d) removing and refitting minor mechanical units/sub-assemblies (such as guards, cover plates, pulleys and belts) e) removing and refitting major mechanical components (such as shafts, gear mechanisms, bearings, clutches) f) replacing lifed items (such as filters, oils/lubricants) g) setting, aligning and adjusting replaced units Electrical equipment: Carry out all of the following: a) isolating the power supply b) disconnecting and reconnecting wires/cables c) removing and replacing minor electrical components (such as relays, sensing devices, limit switches) d) removing and replacing major electrical components (such as motors, switch/control gear) e) attaching cable end fittings (such as crimped and soldered) f) making de-energised checks before powering up Fluid power equipment: Carry out all of the following: a) chocking/supporting cylinders/rams/components b) releasing stored pressure c) removing and replacing hoses/pipes d) removing and replacing minor or lifted components (such as filters, gaskets, dust seals) e) removing and replacing major components (such as pumps, cylinders, valves, actuators) f) setting and adjusting replaced components g) making de-energised checks before re-pressurising the system Programmable controller based equipment: Carry out all of the following: a) de-activating and resetting program controller b) disconnecting and reconnecting wires/cables c) removing and replacing input/output interfacing d) removing and replacing program logic peripherals e) checking and reviewing program format and content f) editing programs using the correct procedure (where appropriate) Process instrumentation: Carry out all of the following: a) isolating instruments/sensing devices b) disconnecting supply/signal connections c) removing and replacing instruments in the system d) replacing all ‘lifed’ items (such as seals, gaskets, dust covers) e) re-connecting instrumentation pipework and power supply f) checking that signal transmission is satisfactory Electronic equipment: Carry out all of the following: a) isolating equipment from the power supply b) dismantling/disconnecting equipment to the required level c) disconnecting and reconnecting wires and cables d) removing and replacing electronic units/circuit boards e) removing and replacing electronic components f) soldering and de-soldering g) making de-energised checks before powering up;
+                         """
+	When parse
+    Then the line 1 should have message
+Scenario: Unit 17
+    Given I have entered:
+                         """
+11 Use four of the following types of test equipment to aid fault diagnosis: a) multimeter b) pressure sources c) oscilloscope d) digital pressure indicators e) signal sources/generator f) standard test gauges g) current injection devices h) special purpose test equipment i) logic probe j) signal tracer k) other specific test equipment;
+                         """
+	When parse
+    Then the lines should be correctly
+  
    

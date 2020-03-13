@@ -8,31 +8,29 @@
 
     public static class ParserExtension
     {
-        //|(?:with)|(?:using)
-        //following childs
-        //public static string[] pattern1 = { "of", "from" };
         public enum State
         {
             UnCorrect,
             Correct,
             NeedCheckWarning
         }
-        //((?!both)&&(?!all)\s+)
         public static Regex[] doesNotHaveChild = new Regex[]
         {
-            new Regex(@"(((of)|(from)|(with)|(using))\s+(the\s+)?following)(.*\s+((plus)|(and)|(or)).*\s+((from)|(of)|(with)|(using))\sthe\sfollowing)", RegexOptions.Compiled|RegexOptions.IgnoreCase),
+            new Regex(@"following|plus",RegexOptions.Compiled|RegexOptions.IgnoreCase),
+            new Regex(@"(((of)|(from)|(with)|(using))\s+(the\s+)?(following\s+)?)(.*\s+((plus)|(and)|(or)).*\s+((from)|(of)|(with)|(using))\sthe\sfollowing)", RegexOptions.Compiled|RegexOptions.IgnoreCase),
             new Regex(@"(((include)(with)|(using)\s+)?((one)|(two)|(three)|(four)|(five)|(six)|(seven)|(eight)|(nine)|(ten)|(eleven)|(twelve)|(more))\s+)?((of)|(from)|(with)|(using))\s+(the\s+)?following.*:\s*•?\s*\w+", RegexOptions.Compiled|RegexOptions.IgnoreCase),
             new Regex(@"include:(\s+\w+)+", RegexOptions.Compiled|RegexOptions.IgnoreCase)
         };
         public static Regex[] doesHaveChild = new Regex[]
         {
-            new Regex(@"(.*)(?!following)(.*)(?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following(?!.*following.*)", RegexOptions.Compiled | RegexOptions.IgnoreCase)
-            //new Regex(@"((all)|(both))\s+((from)|(of)\s+)?the\s+following.*:\s*$", RegexOptions.Compiled | RegexOptions.IgnoreCase)
+            new Regex(@"following|plus",RegexOptions.Compiled|RegexOptions.IgnoreCase),
+            new Regex(@"(?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following(?!.*following.*)", RegexOptions.Compiled | RegexOptions.IgnoreCase)
         };
         public static Regex[] incorrectString = new Regex[]
         {
-            new Regex(@"(.*?!following.*)(plus.*)", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-            new Regex(@"(.*)(?!following)(.*)(?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following[^)\d]*(?:([abcd]\))|(\d+(\.\d+)*))(?!.*following.*)", RegexOptions.Compiled | RegexOptions.IgnoreCase)
+            new Regex(@"following|plus",RegexOptions.Compiled|RegexOptions.IgnoreCase),
+            new Regex(@"(?<!(following|using|include).*)\splus", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+            new Regex(@"(?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following[^)\d]*(?:([abcd]\))|(\d+(\.\d+)*))(?!.*following.*)", RegexOptions.Compiled | RegexOptions.IgnoreCase)
         };
         public static Regex[] checkWarnings = new Regex[]
         {
@@ -85,28 +83,31 @@
 
         public static State DoesHaveChild(string currentCriteria, string currentRoot, string nextRoot)
         {
-            bool nextRootIsCorrectly;
-            if (String.IsNullOrEmpty(nextRoot))
+            if (doesHaveChild.First().IsMatch(currentCriteria))
             {
-                nextRootIsCorrectly = true;
-            }
-            else
-            {
-                nextRoot = GetCriterionNumberOfString(nextRoot);
-                nextRootIsCorrectly = NumberingChecks.CheckRoot(currentRoot, nextRoot);
-            }
-            foreach (var regex in doesHaveChild)
-            {
-                var match = regex.Match(currentCriteria);
-                if (match.Success)
+                bool nextRootIsCorrectly;
+                if (String.IsNullOrEmpty(nextRoot))
                 {
-                    if (nextRootIsCorrectly)
+                    nextRootIsCorrectly = true;
+                }
+                else
+                {
+                    nextRoot = GetCriterionNumberOfString(nextRoot);
+                    nextRootIsCorrectly = NumberingChecks.CheckRoot(currentRoot, nextRoot);
+                }
+                foreach (var regex in doesHaveChild.Skip(1))
+                {
+                    var match = regex.Match(currentCriteria);
+                    if (match.Success)
                     {
-                        return State.Correct;
-                    }
-                    else
-                    {
-                        return State.UnCorrect;
+                        if (nextRootIsCorrectly)
+                        {
+                            return State.Correct;
+                        }
+                        else
+                        {
+                            return State.UnCorrect;
+                        }
                     }
                 }
             }
@@ -114,38 +115,44 @@
         }
         public static State DoesNotHaveChild(string currentCriteria, string currentRoot, string nextRoot)
         {
-            bool nextRootIsUnCorrect;
-            if (String.IsNullOrEmpty(nextRoot) || nextRoot.StartsWith("Unit"))
+            if (doesHaveChild.First().IsMatch(currentCriteria))
             {
-                nextRootIsUnCorrect = false;
-            }
-            else
-            {
-                nextRoot = GetCriterionNumberOfString(nextRoot);
-                nextRootIsUnCorrect = NumberingChecks.CheckRoot(currentRoot, nextRoot);
-            }
-            foreach (var regex in doesNotHaveChild)
-            {
-                var match = regex.Match(currentCriteria);
-                if (match.Success)
+                bool nextRootIsUnCorrect;
+                if (String.IsNullOrEmpty(nextRoot) || nextRoot.StartsWith("Unit"))
                 {
-                    if (nextRootIsUnCorrect)
+                    nextRootIsUnCorrect = false;
+                }
+                else
+                {
+                    nextRoot = GetCriterionNumberOfString(nextRoot);
+                    nextRootIsUnCorrect = NumberingChecks.CheckRoot(currentRoot, nextRoot);
+                }
+                foreach (var regex in doesNotHaveChild.Skip(1))
+                {
+                    var match = regex.Match(currentCriteria);
+                    if (match.Success)
                     {
-                        return State.UnCorrect;
+                        if (nextRootIsUnCorrect)
+                        {
+                            return State.UnCorrect;
+                        }
+                        return State.Correct;
                     }
-                    return State.Correct;
                 }
             }
             return State.NeedCheckWarning;
         }
         public static bool InCorrectString(string currentCriteria)
         {
-            foreach (var regex in incorrectString)
+            if (doesHaveChild.First().IsMatch(currentCriteria))
             {
-                var match = regex.Match(currentCriteria);
-                if (match.Success)
+                foreach (var regex in incorrectString.Skip(1))
                 {
-                    return true;
+                    var match = regex.Match(currentCriteria);
+                    if (match.Success)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;

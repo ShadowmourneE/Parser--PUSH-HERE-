@@ -748,6 +748,156 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Unit 15")]
+        public virtual void Unit15()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 15", null, ((string[])(null)));
+#line 170
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 171
+    testRunner.Given("I have entered:", "1.2 aasdfasdfasdf all of the following adfasdf following adsfasdf asdfa", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 175
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 176
+    testRunner.Then("the line 1 should have message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Unit 16")]
+        public virtual void Unit16()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 16", null, ((string[])(null)));
+#line 177
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 178
+    testRunner.Given("I have entered:", "1.8 Use appropriate dismantling and re-assembly techniques to deal with three of " +
+                        "the following technologies: Mechanical equipment: Carry out all of the following" +
+                        ": a) draining and replenishing fluids b) removing and refitting/replacing lockin" +
+                        "g and retaining devices c) proof marking components to aid reassembly d) removin" +
+                        "g and refitting minor mechanical units/sub-assemblies (such as guards, cover pla" +
+                        "tes, pulleys and belts) e) removing and refitting major mechanical components (s" +
+                        "uch as shafts, gear mechanisms, bearings, clutches) f) replacing lifed items (su" +
+                        "ch as filters, oils/lubricants) g) setting, aligning and adjusting replaced unit" +
+                        "s Electrical equipment: Carry out all of the following: a) isolating the power s" +
+                        "upply b) disconnecting and reconnecting wires/cables c) removing and replacing m" +
+                        "inor electrical components (such as relays, sensing devices, limit switches) d) " +
+                        "removing and replacing major electrical components (such as motors, switch/contr" +
+                        "ol gear) e) attaching cable end fittings (such as crimped and soldered) f) makin" +
+                        "g de-energised checks before powering up Fluid power equipment: Carry out all of" +
+                        " the following: a) chocking/supporting cylinders/rams/components b) releasing st" +
+                        "ored pressure c) removing and replacing hoses/pipes d) removing and replacing mi" +
+                        "nor or lifted components (such as filters, gaskets, dust seals) e) removing and " +
+                        "replacing major components (such as pumps, cylinders, valves, actuators) f) sett" +
+                        "ing and adjusting replaced components g) making de-energised checks before re-pr" +
+                        "essurising the system Programmable controller based equipment: Carry out all of " +
+                        "the following: a) de-activating and resetting program controller b) disconnectin" +
+                        "g and reconnecting wires/cables c) removing and replacing input/output interfaci" +
+                        "ng d) removing and replacing program logic peripherals e) checking and reviewing" +
+                        " program format and content f) editing programs using the correct procedure (whe" +
+                        "re appropriate) Process instrumentation: Carry out all of the following: a) isol" +
+                        "ating instruments/sensing devices b) disconnecting supply/signal connections c) " +
+                        "removing and replacing instruments in the system d) replacing all ‘lifed’ items " +
+                        "(such as seals, gaskets, dust covers) e) re-connecting instrumentation pipework " +
+                        "and power supply f) checking that signal transmission is satisfactory Electronic" +
+                        " equipment: Carry out all of the following: a) isolating equipment from the powe" +
+                        "r supply b) dismantling/disconnecting equipment to the required level c) disconn" +
+                        "ecting and reconnecting wires and cables d) removing and replacing electronic un" +
+                        "its/circuit boards e) removing and replacing electronic components f) soldering " +
+                        "and de-soldering g) making de-energised checks before powering up;", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 182
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 183
+    testRunner.Then("the line 1 should have message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Unit 17")]
+        public virtual void Unit17()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 17", null, ((string[])(null)));
+#line 184
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 185
+    testRunner.Given("I have entered:", @"11 Use four of the following types of test equipment to aid fault diagnosis: a) multimeter b) pressure sources c) oscilloscope d) digital pressure indicators e) signal sources/generator f) standard test gauges g) current injection devices h) special purpose test equipment i) logic probe j) signal tracer k) other specific test equipment;", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 189
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 190
+    testRunner.Then("the lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
