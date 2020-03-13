@@ -2,6 +2,7 @@
 {
     using ParseTheDocumentWeb.Extensions;
     using ParseTheDocumentWeb.Interfaces;
+    using ParseTheDocumentWeb.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -10,19 +11,21 @@
     {
         private string _indexTemplate;
         private Dictionary<string, string> _excelMapper;
+        private List<Error> _errors;
+        private List<Warning> _warnings;
         private List<string> _errorsList;
         private List<string> _warningsPairs;
         public delegate void ParserErrorHandler(List<string> errorsPairs, List<string> warningsPairs);
         public event ParserErrorHandler CompletedNotify;
-        public List<string> ErrorsList
+        public List<Error> Errors
         {
-            get { return _errorsList; }
-            set { _errorsList = value; }
+            get { return _errors; }
+            set { _errors = value; }
         }
-        public List<string> WarningsPairs
+        public List<Warning> Warnings
         {
-            get { return _warningsPairs; }
-            set { _warningsPairs = value; }
+            get { return _warnings; }
+            set { _warnings = value; }
         }
 
 
@@ -38,6 +41,8 @@
         public void StartParse(string[] file)
         {
             _excelMapper = new Dictionary<string, string>(file.Length);
+            _errors = new List<Error>();
+            _warnings = new List<Warning>();
             _errorsList = new List<string>();
             _warningsPairs = new List<string>();
             var unitNumber = _indexTemplate;
@@ -72,7 +77,8 @@
 
                         if (string.IsNullOrWhiteSpace(currentNodeNumber))
                         {
-                            _errorsList.Add($"line - {rowIndex + 1}. String doesn't start with number");
+                            _errors.Add(new Error { Row = rowIndex + 1, Message = "String doesn't start with number", Line = file[rowIndex] });
+                            //_errorsList.Add($"line - {rowIndex + 1}. String doesn't start with number");
                         }
                         else
                         {
@@ -81,7 +87,8 @@
                                 //current 1.1.1.3.1 prev 1.1.1.3 check 1.1.1.3==1.1.1.3
                                 if (!NumberingChecks.CheckRoot(prevNodeNumber, currentNodeNumberFull))
                                 {
-                                    _errorsList.Add($"line - { rowIndex + 1}. nesting does't match previous ?- {file[rowIndex]};");
+                                    _errors.Add(new Error { Row = rowIndex + 1, Message = "Nesting does't match previous", Line = file[rowIndex] });
+                                    //_errorsList.Add($"line - { rowIndex + 1}. Nesting does't match previous ?- {file[rowIndex]};");
                                 }
                                 rowIndex = BuildTree(rowIndex, prevNodeNumber);
                             }
@@ -90,7 +97,8 @@
                                 //current 1.1.1.4 prev 1.1.1.3.1 check 1.1.1 == 1.1.1 and 4>3
                                 if (!NumberingChecks.CheckNumberingPrev(prevNodeNumber, currentNodeNumberFull))
                                 {
-                                    _errorsList.Add($"line - { rowIndex + 1}. nesting does't match previous ?- {file[rowIndex]};");
+                                    _errors.Add(new Error { Row = rowIndex + 1, Message = "Nesting does't match previous", Line = file[rowIndex] });
+                                    //_errorsList.Add($"line - { rowIndex + 1}. nesting does't match previous ?- {file[rowIndex]};");
                                 }
                                 return --rowIndex;
                             }
@@ -99,7 +107,8 @@
                                 //current 1.1.1.3.2 prev 1.1.1.3.1 check 1.1.1.3 == 1.1.1.3 and 2>1
                                 if (!NumberingChecks.CheckNumberingCurrent(prevNodeNumber, currentNodeNumberFull))
                                 {
-                                    _errorsList.Add($"line - { rowIndex + 1}. nesting does't match previous ?- {file[rowIndex]};");
+                                    _errors.Add(new Error { Row = rowIndex + 1, Message = "Nesting does't match previous", Line = file[rowIndex] });
+                                    //_errorsList.Add($"line - { rowIndex + 1}. nesting does't match previous ?- {file[rowIndex]};");
                                 }
                                 try
                                 {
@@ -108,7 +117,8 @@
                                     switch (ParserExtension.DoesHaveChild(file[rowIndex], currentNodeNumber, rowIndex + 1 >= file.Length ? null : file[rowIndex + 1]))//check  regexp
                                     {
                                         case ParserExtension.State.UnCorrect:
-                                            _errorsList.Add($"line - {rowIndex + 1}.  line is not formatted correctly for concatenation ?- {file[rowIndex]}; ");
+                                            _errors.Add(new Error { Row = rowIndex + 1, Message = "Line in the wrong format for children", Line = file[rowIndex] });
+                                            //_errorsList.Add($"line - {rowIndex + 1}.  Line is not formatted correctly for concatenation ?- {file[rowIndex]}; ");
                                             haveError = true;
                                             break;
                                         case ParserExtension.State.Correct:
@@ -118,7 +128,8 @@
                                             switch (ParserExtension.DoesNotHaveChild(file[rowIndex], currentNodeNumber, rowIndex + 1 >= file.Length ? null : file[rowIndex + 1])) //check  regexp
                                             {
                                                 case ParserExtension.State.UnCorrect:
-                                                    _errorsList.Add($"line - {rowIndex + 1}. line in the wrong format for children ?- {file[rowIndex]}; ");
+                                                    _errors.Add(new Error { Row = rowIndex + 1, Message = "Line is not formatted correctly for concatenation", Line = file[rowIndex] });
+                                                    //_errorsList.Add($"line - {rowIndex + 1}. line in the wrong format for children ?- {file[rowIndex]}; ");
                                                     haveError = true;
                                                     needCheckWarning = false;
                                                     break;
@@ -135,7 +146,8 @@
                                     {
                                         if (ParserExtension.InCorrectString(file[rowIndex]))
                                         {
-                                            _errorsList.Add($"line - {rowIndex + 1}. incorrect string ?- {file[rowIndex]}; ");
+                                            _errors.Add(new Error { Row = rowIndex + 1, Message = "Incorrect string", Line = file[rowIndex] });
+                                            //_errorsList.Add($"line - {rowIndex + 1}. incorrect string ?- {file[rowIndex]}; ");
                                             haveError = true;
                                         }
                                     }
@@ -143,24 +155,31 @@
                                     {
                                         if (!ParserExtension.CheckWarnings(file[rowIndex]))// check warning regexp
                                         {
-                                            _warningsPairs.Add($"line - {rowIndex + 1}. check this line ?- {file[rowIndex]};");
+                                            _warnings.Add(new Warning { Row = rowIndex + 1, Message = "Check this line", Line = file[rowIndex] });
+                                            //_warningsPairs.Add($"line - {rowIndex + 1}. check this line ?- {file[rowIndex]};");
                                         }
                                     }
                                     if (ParserExtension.ContainsDirtyInfo(file[rowIndex]))
                                     {
-                                        _warningsPairs.Add($"line - {rowIndex + 1}. Check: maybe there useless information exists- {file[rowIndex]}; ");
+                                        _warnings.Add(new Warning { Row = rowIndex + 1, Message = "Maybe there useless information exists", Line = file[rowIndex] });
+                                        //_warningsPairs.Add($"line - {rowIndex + 1}. Check: maybe there useless information exists- {file[rowIndex]}; ");
                                     }
 
                                     if (!currentNodeNumberFull.IsTemplateValid())
                                     {
-                                        _errorsList.Add($"line - {rowIndex + 1}. Error: Template is not valid! Check the index at the beginning- {file[rowIndex]}; ");
+                                        _errors.Add(new Error { Row = rowIndex + 1, Message = "Template is not valid!", Line = file[rowIndex] });
+                                        //_errorsList.Add($"line - {rowIndex + 1}. Error: Template is not valid! Check the index at the beginning- {file[rowIndex]}; ");
                                     }
 
                                     //_excelMapper.Add(currentNodeNumberFull, file[rowIndex]);
                                 }
                                 catch (Exception e)
                                 {
-                                    _errorsList.Add($"line - {rowIndex + 1}. Not unique content or invalid string: string - {file[rowIndex]};");
+                                    if (!_errors.Where(error => error.Message.Contains("Nesting does't match previous") && error.Row == rowIndex + 1).Any())
+                                    {
+                                        _errors.Add(new Error { Row = rowIndex + 1, Message = "Not unique content or invalid string", Line = file[rowIndex] });
+                                    }
+                                    //_errorsList.Add($"line - {rowIndex + 1}. Not unique content or invalid string: string - {file[rowIndex]};");
                                 }
 
                                 prevNodeNumber = currentNodeNumberFull;
@@ -170,24 +189,21 @@
                                 }
                                 else
                                 {
-                                    if (!_errorsList.Contains($"line - { rowIndex + 1}. nesting does't match previous ?- {file[rowIndex]};"))
-                                    {
-                                        _errorsList.Add($"line - {rowIndex + 1}. Not unique content or invalid string: string - {file[rowIndex]}; ");
-                                    }
+                                    //if (!_errors.Where(error => error.Message.Contains("Nesting does't match previous") && error.Row == rowIndex + 1).Any())
+                                    //{
+                                        _errors.Add(new Error { Row = rowIndex + 1, Message = "Not unique content or invalid string", Line = file[rowIndex] });
+                                        //_errorsList.Add($"line - {rowIndex + 1}. Not unique content or invalid string: string - {file[rowIndex]}; ");
+                                    //}
                                 }
                             }
                         }
                     }
-
                     rowIndex++;
                 }
                 return rowIndex;
             }
-
-
             this.OnParsingCompleted();
         }
-
         private void OnParsingCompleted()
         {
             CompletedNotify?.Invoke(_errorsList, _warningsPairs);

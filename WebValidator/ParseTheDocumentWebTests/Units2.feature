@@ -13,7 +13,6 @@ Scenario: Unit 1
                          6 Recognise and control hazards in the workplace
                          """
 	When parse
-    #correctly p.1.3
 	Then the lines should be correctly 
 Scenario: Unit 2
     
@@ -26,8 +25,7 @@ Scenario: Unit 2
                          2.2 alsdefaksdhfas plus
                          """
 	When parse
-    #correctly p.1.3
-	Then the line 5 should have message
+	Then the line 5 should have message: Incorrect string
 Scenario: Unit 3
      Given I have entered:
                          """
@@ -44,7 +42,6 @@ Scenario: Unit 3
                          1.10.10 dispose of waste items in a safe and environmentally acceptable manner, and leave the work area in a safe condition   
                          """
 	When parse
-    #correctly p.1.3
 	Then the lines should be correctly
 Scenario: Unit 4
      Given I have entered:
@@ -62,8 +59,7 @@ Scenario: Unit 4
 2.10 Explain what constitute dangerous occurrences and hazardous malfunctions, and why these must be reported even if no-one is injured 
                          """
 	When parse
-    #correctly p.1.3
-	Then the line 7 should have message
+	Then the line 8 should have message: Check this line
 Scenario: Unit 5
      Given I have entered:
                          """
@@ -72,7 +68,6 @@ Scenario: Unit 5
 Unit FPGA-02: Maintaining Mechanical Devices and Equipment
                          """
 	When parse
-    #correctly p.1.3
 	Then the lines should be correctly
 Scenario: Unit 6
      Given I have entered:
@@ -80,7 +75,6 @@ Scenario: Unit 6
                          1.11 Produce drawings which comply with one or more of the following:   a) organisational guidelines   b) statutory regulations and codes of practice    c) CAD software standards   d) BS and ISO standards   e) other international standard   
                          """
 	When parse
-    #correctly p.1.3
 	Then the lines should be correctly
 Scenario: Unit 7
      Given I have entered:
@@ -109,8 +103,7 @@ Scenario: Unit 7
 2. 21 Explain the extent of their own responsibility, and explain to whom they should report if they have problems that they cannot resolve   
                          """
 	When parse
-    #correctly p.1.3
-	Then the line 2 should have message
+	Then the line 2 should have message: Nesting does't match previous
 Scenario: Unit 8
     Given I have entered:
                          """
@@ -129,7 +122,7 @@ Scenario: Unit 9
 6 Carry out the maintenance activities in the specified sequence and in an agreed timescale
                          """
 	When parse
-	Then the line 2 should have message
+	Then the line 2 should have message: Line in the wrong format for children
 Scenario: Unit 10
     Given I have entered:
                          """
@@ -152,14 +145,14 @@ Scenario: Unit 12
 1.3 Determine organisational availability of in-house equipment against the planned manufacturing layout to include both of the following: a) shared existing resource b) freely available resource
                          """
 	When parse
-	Then the line 1 should have message
+	Then the line 1 should have message: Incorrect string
 Scenario: Unit 13
     Given I have entered:
                          """
 2 Lead a maintenance team by carrying out all the following:   a) communicate the maintenance activities to the team   b) involve the team in planning how the maintenance activities will be undertaken   c) allocate specific maintenance activities to each team member    d) involve the team in identifying improvements that could be made to the maintenance process and/or procedures    e) encourage the team and/or individuals to take the lead where appropriate   
                          """
 	When parse
-	Then the line 1 should have message
+	Then the line 1 should have message: Incorrect string
 Scenario: Unit 14
     Given I have entered:
                          """
@@ -170,18 +163,11 @@ Scenario: Unit 14
 Scenario: Unit 15
     Given I have entered:
                          """
-1.2 aasdfasdfasdf all of the following adfasdf following adsfasdf asdfa
-                         """
-	When parse
-    Then the line 1 should have message
-Scenario: Unit 16
-    Given I have entered:
-                         """
 1.8 Use appropriate dismantling and re-assembly techniques to deal with three of the following technologies: Mechanical equipment: Carry out all of the following: a) draining and replenishing fluids b) removing and refitting/replacing locking and retaining devices c) proof marking components to aid reassembly d) removing and refitting minor mechanical units/sub-assemblies (such as guards, cover plates, pulleys and belts) e) removing and refitting major mechanical components (such as shafts, gear mechanisms, bearings, clutches) f) replacing lifed items (such as filters, oils/lubricants) g) setting, aligning and adjusting replaced units Electrical equipment: Carry out all of the following: a) isolating the power supply b) disconnecting and reconnecting wires/cables c) removing and replacing minor electrical components (such as relays, sensing devices, limit switches) d) removing and replacing major electrical components (such as motors, switch/control gear) e) attaching cable end fittings (such as crimped and soldered) f) making de-energised checks before powering up Fluid power equipment: Carry out all of the following: a) chocking/supporting cylinders/rams/components b) releasing stored pressure c) removing and replacing hoses/pipes d) removing and replacing minor or lifted components (such as filters, gaskets, dust seals) e) removing and replacing major components (such as pumps, cylinders, valves, actuators) f) setting and adjusting replaced components g) making de-energised checks before re-pressurising the system Programmable controller based equipment: Carry out all of the following: a) de-activating and resetting program controller b) disconnecting and reconnecting wires/cables c) removing and replacing input/output interfacing d) removing and replacing program logic peripherals e) checking and reviewing program format and content f) editing programs using the correct procedure (where appropriate) Process instrumentation: Carry out all of the following: a) isolating instruments/sensing devices b) disconnecting supply/signal connections c) removing and replacing instruments in the system d) replacing all ‘lifed’ items (such as seals, gaskets, dust covers) e) re-connecting instrumentation pipework and power supply f) checking that signal transmission is satisfactory Electronic equipment: Carry out all of the following: a) isolating equipment from the power supply b) dismantling/disconnecting equipment to the required level c) disconnecting and reconnecting wires and cables d) removing and replacing electronic units/circuit boards e) removing and replacing electronic components f) soldering and de-soldering g) making de-energised checks before powering up;
                          """
 	When parse
-    Then the line 1 should have message
-Scenario: Unit 17
+    Then the line 1 should have message: Incorrect string
+Scenario: Unit 16
     Given I have entered:
                          """
 11 Use four of the following types of test equipment to aid fault diagnosis: a) multimeter b) pressure sources c) oscilloscope d) digital pressure indicators e) signal sources/generator f) standard test gauges g) current injection devices h) special purpose test equipment i) logic probe j) signal tracer k) other specific test equipment;
@@ -189,4 +175,3 @@ Scenario: Unit 17
 	When parse
     Then the lines should be correctly
   
-   

@@ -30,8 +30,8 @@ Scenario: Unit 2
                         1.4 Prepare and prove programs for one of the following types of CNC machine tool: a) two axis machine b) multiple axis machines (4 or more) c) three axis machine d) machining centres
                          """
 	When parse
-    #wrong p.1.3
-	Then the line 4 should have message
+    #error p.1.3
+	Then the line 4 should have message: Line in the wrong format for children
 Scenario: Unit 3
     Given I have entered:
                          """
@@ -56,8 +56,8 @@ Scenario: Unit 4
                          1.3.6 return all tools and equipment to the correct location on completion of the maintenance activities
                          """
 	When parse
-    #wrong  1.3
-	Then the line 4 should have message
+    #error  1.3
+	Then the line 4 should have message: Incorrect string
 Scenario: Unit 5
     Given I have entered:
                          """
@@ -65,5 +65,5 @@ Scenario: Unit 5
                          1.1 both of the following: plus more of the following asdfasdfasdfasdf
                          """
 	When parse
-    #wrong  1.3
+    #correctly all
 	Then the lines should be correctly

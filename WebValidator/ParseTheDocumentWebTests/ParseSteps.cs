@@ -25,8 +25,6 @@ namespace ParseTheDocumentWebTests
         public void Parse()
         {
             parser.StartParse(file.ToArray());
-            messages.AddRange(parser.ErrorsList);
-            messages.AddRange(parser.WarningsPairs);
 
         }
         [Then(@"the lines should be correctly")]
@@ -34,69 +32,19 @@ namespace ParseTheDocumentWebTests
         {
             Assert.IsFalse(SearchMessage());
         }
-        [Then(@"the line (\d+) should have message")]
-        public void ThenTheLineShouldBeHaveMessage(int row)
+        [Then(@"the line (\d+) should have message: (.*)")]
+        public void ThenTheLineShouldBeHaveMessage(int row, string message)
         {
-            var message = FindMessage(row);
-            Assert.IsTrue(!string.IsNullOrEmpty(message), message);
+            Assert.IsTrue(FindMessage(row,message), message);
+        }
+        public bool FindMessage(int row, string message)
+        {
+            return parser.Errors.Any(error => error.Row == row && error.Message == message)
+                || parser.Warnings.Any(warning => warning.Row == row && warning.Message == message);
         }
         public bool SearchMessage()
         {
-            bool isExist = false;
-            if (parser.WarningsPairs.Any() || parser.ErrorsList.Any())
-            {
-                isExist = true;
-            }
-            return isExist;
-        }
-
-        public bool FindError(string line)
-        {
-            var regex = new Regex("line - " + line + ".");
-            foreach (var error in parser.ErrorsList)
-            {
-                if (regex.Match(error).Success)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public bool FindWarning(string line)
-        {
-            var regex = new Regex("line - " + line + ".");
-            foreach (var error in parser.WarningsPairs)
-            {
-                if (regex.Match(error).Success)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public string FindMessage(int row)
-        {
-            var regex = new Regex(row.ToString());
-            foreach (var error in messages)
-            {
-                if (regex.Match(error).Success)
-                {
-                    return error;
-                }
-            }
-            return string.Empty;
-        }
-        public bool FindMessageByLine(string line)
-        {
-            var regex = new Regex("line - " + line + ".");
-            foreach (var error in messages)
-            {
-                if (regex.Match(error).Success)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return parser.Errors.Any() || parser.Warnings.Any();
         }
     }
 
