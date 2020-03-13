@@ -19,7 +19,7 @@ Scenario: Unit 1
                          """
 	When parse
     #correctly p.1.3
-	Then the lines should be correctly
+	Then all lines should be correctly
 Scenario: Unit 2
     Given I have entered:
                          """
@@ -40,7 +40,7 @@ Scenario: Unit 3
                          """
 	When parse
     #correctly p. 1.2, 1.3 
-	Then the lines should be correctly
+	Then all lines should be correctly
 Scenario: Unit 4
     Given I have entered:
                          """
@@ -66,4 +66,4 @@ Scenario: Unit 5
                          """
 	When parse
     #correctly all
-	Then the lines should be correctly
+	Then all lines should be correctly

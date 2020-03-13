@@ -27,7 +27,7 @@ namespace ParseTheDocumentWebTests
             parser.StartParse(file.ToArray());
 
         }
-        [Then(@"the lines should be correctly")]
+        [Then(@"all lines should be correctly")]
         public void ThenTheErrorsShouldBeCorrectly()
         {
             Assert.IsFalse(SearchMessage());
@@ -35,12 +35,26 @@ namespace ParseTheDocumentWebTests
         [Then(@"the line (\d+) should have message: (.*)")]
         public void ThenTheLineShouldBeHaveMessage(int row, string message)
         {
-            Assert.IsTrue(FindMessage(row,message), message);
+            Assert.AreEqual(FindMessage(row,message), message);
         }
-        public bool FindMessage(int row, string message)
+        public string FindMessage(int row, string message)
         {
-            return parser.Errors.Any(error => error.Row == row && error.Message == message)
-                || parser.Warnings.Any(warning => warning.Row == row && warning.Message == message);
+            if(parser.Errors.Find(error => error.Row == row && error.Message == message) != null)
+            {
+                return parser.Errors.Find(error => error.Row == row && error.Message == message).Message;
+            }
+            else if(parser.Warnings.Find(warning => warning.Row == row && warning.Message == message) != null)
+            {
+                return parser.Warnings.Find(warning => warning.Row == row && warning.Message == message).Message;
+            }
+            if(parser.Errors.Find(error => error.Row == row) != null)
+            {
+                return parser.Errors.Find(error => error.Row == row).Message;
+            }else if (parser.Warnings.Find(warning => warning.Row == row) != null)
+            {
+                return parser.Warnings.Find(warning => warning.Row == row).Message;
+            }
+            return string.Empty;
         }
         public bool SearchMessage()
         {

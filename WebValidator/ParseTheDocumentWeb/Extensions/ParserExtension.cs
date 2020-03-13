@@ -54,7 +54,7 @@
         /// <returns></returns>
         public static string GetCriterionNumberOfString(string str)
         {
-            var regex = new Regex(@"^\d(\.\d+)*");
+            var regex = new Regex(@"^\d+(\.\d+)*");
             Match result = regex.Match(str);
             if (result.Success)
                 return result.Groups[0].Value;

@@ -15,7 +15,7 @@
         private List<Warning> _warnings;
         private List<string> _errorsList;
         private List<string> _warningsPairs;
-        public delegate void ParserErrorHandler(List<string> errorsPairs, List<string> warningsPairs);
+        public delegate void ParserErrorHandler(List<Error> errors, List<Warning> warnings);
         public event ParserErrorHandler CompletedNotify;
         public List<Error> Errors
         {
@@ -78,7 +78,6 @@
                         if (string.IsNullOrWhiteSpace(currentNodeNumber))
                         {
                             _errors.Add(new Error { Row = rowIndex + 1, Message = "String doesn't start with number", Line = file[rowIndex] });
-                            //_errorsList.Add($"line - {rowIndex + 1}. String doesn't start with number");
                         }
                         else
                         {
@@ -88,7 +87,6 @@
                                 if (!NumberingChecks.CheckRoot(prevNodeNumber, currentNodeNumberFull))
                                 {
                                     _errors.Add(new Error { Row = rowIndex + 1, Message = "Nesting does't match previous", Line = file[rowIndex] });
-                                    //_errorsList.Add($"line - { rowIndex + 1}. Nesting does't match previous ?- {file[rowIndex]};");
                                 }
                                 rowIndex = BuildTree(rowIndex, prevNodeNumber);
                             }
@@ -98,17 +96,14 @@
                                 if (!NumberingChecks.CheckNumberingPrev(prevNodeNumber, currentNodeNumberFull))
                                 {
                                     _errors.Add(new Error { Row = rowIndex + 1, Message = "Nesting does't match previous", Line = file[rowIndex] });
-                                    //_errorsList.Add($"line - { rowIndex + 1}. nesting does't match previous ?- {file[rowIndex]};");
                                 }
                                 return --rowIndex;
                             }
                             else
                             {
-                                //current 1.1.1.3.2 prev 1.1.1.3.1 check 1.1.1.3 == 1.1.1.3 and 2>1
                                 if (!NumberingChecks.CheckNumberingCurrent(prevNodeNumber, currentNodeNumberFull))
                                 {
                                     _errors.Add(new Error { Row = rowIndex + 1, Message = "Nesting does't match previous", Line = file[rowIndex] });
-                                    //_errorsList.Add($"line - { rowIndex + 1}. nesting does't match previous ?- {file[rowIndex]};");
                                 }
                                 try
                                 {
@@ -118,7 +113,6 @@
                                     {
                                         case ParserExtension.State.UnCorrect:
                                             _errors.Add(new Error { Row = rowIndex + 1, Message = "Line in the wrong format for children", Line = file[rowIndex] });
-                                            //_errorsList.Add($"line - {rowIndex + 1}.  Line is not formatted correctly for concatenation ?- {file[rowIndex]}; ");
                                             haveError = true;
                                             break;
                                         case ParserExtension.State.Correct:
@@ -129,7 +123,6 @@
                                             {
                                                 case ParserExtension.State.UnCorrect:
                                                     _errors.Add(new Error { Row = rowIndex + 1, Message = "Line is not formatted correctly for concatenation", Line = file[rowIndex] });
-                                                    //_errorsList.Add($"line - {rowIndex + 1}. line in the wrong format for children ?- {file[rowIndex]}; ");
                                                     haveError = true;
                                                     needCheckWarning = false;
                                                     break;
@@ -147,7 +140,6 @@
                                         if (ParserExtension.InCorrectString(file[rowIndex]))
                                         {
                                             _errors.Add(new Error { Row = rowIndex + 1, Message = "Incorrect string", Line = file[rowIndex] });
-                                            //_errorsList.Add($"line - {rowIndex + 1}. incorrect string ?- {file[rowIndex]}; ");
                                             haveError = true;
                                         }
                                     }
@@ -156,22 +148,18 @@
                                         if (!ParserExtension.CheckWarnings(file[rowIndex]))// check warning regexp
                                         {
                                             _warnings.Add(new Warning { Row = rowIndex + 1, Message = "Check this line", Line = file[rowIndex] });
-                                            //_warningsPairs.Add($"line - {rowIndex + 1}. check this line ?- {file[rowIndex]};");
                                         }
                                     }
                                     if (ParserExtension.ContainsDirtyInfo(file[rowIndex]))
                                     {
                                         _warnings.Add(new Warning { Row = rowIndex + 1, Message = "Maybe there useless information exists", Line = file[rowIndex] });
-                                        //_warningsPairs.Add($"line - {rowIndex + 1}. Check: maybe there useless information exists- {file[rowIndex]}; ");
                                     }
 
                                     if (!currentNodeNumberFull.IsTemplateValid())
                                     {
                                         _errors.Add(new Error { Row = rowIndex + 1, Message = "Template is not valid!", Line = file[rowIndex] });
-                                        //_errorsList.Add($"line - {rowIndex + 1}. Error: Template is not valid! Check the index at the beginning- {file[rowIndex]}; ");
                                     }
 
-                                    //_excelMapper.Add(currentNodeNumberFull, file[rowIndex]);
                                 }
                                 catch (Exception e)
                                 {
@@ -179,7 +167,6 @@
                                     {
                                         _errors.Add(new Error { Row = rowIndex + 1, Message = "Not unique content or invalid string", Line = file[rowIndex] });
                                     }
-                                    //_errorsList.Add($"line - {rowIndex + 1}. Not unique content or invalid string: string - {file[rowIndex]};");
                                 }
 
                                 prevNodeNumber = currentNodeNumberFull;
@@ -189,11 +176,10 @@
                                 }
                                 else
                                 {
-                                    //if (!_errors.Where(error => error.Message.Contains("Nesting does't match previous") && error.Row == rowIndex + 1).Any())
-                                    //{
+                                    if (!_errors.Where(error => error.Message.Contains("Nesting does't match previous") && error.Row == rowIndex + 1).Any())
+                                    {
                                         _errors.Add(new Error { Row = rowIndex + 1, Message = "Not unique content or invalid string", Line = file[rowIndex] });
-                                        //_errorsList.Add($"line - {rowIndex + 1}. Not unique content or invalid string: string - {file[rowIndex]}; ");
-                                    //}
+                                    }
                                 }
                             }
                         }
@@ -206,7 +192,7 @@
         }
         private void OnParsingCompleted()
         {
-            CompletedNotify?.Invoke(_errorsList, _warningsPairs);
+            CompletedNotify?.Invoke(_errors, _warnings);
         }
     }
 }
