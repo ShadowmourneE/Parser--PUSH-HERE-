@@ -7,13 +7,15 @@ using ParseTheDocumentWeb.Extensions;
 using System.Linq;
 using System.Text.RegularExpressions;
 using TechTalk.SpecFlow.Assist;
+using ParseTheDocumentWeb.Interfaces;
+using ParseTheDocumentWeb.Models;
 
 namespace ParseTheDocumentWebTests
 {
     [Binding]
     public class ParseSteps
     {
-        private List<string> messages = new List<string>();
+        private List<IMessage> messages = new List<IMessage>(); 
         private IEnumerable<string> file;
         private MultipleLevelsParser parser = new MultipleLevelsParser();
         [Given(@"I have entered:$")]
@@ -25,40 +27,35 @@ namespace ParseTheDocumentWebTests
         public void Parse()
         {
             parser.StartParse(file.ToArray());
+            messages.AddRange(parser.Errors);
+            messages.AddRange(parser.Warnings);
 
         }
         [Then(@"all lines should be correctly")]
         public void ThenTheErrorsShouldBeCorrectly()
         {
-            Assert.IsFalse(SearchMessage());
+            Assert.IsNull(SearchMessage(), messages.Any() ? messages.First().Message : string.Empty);
         }
         [Then(@"the line (\d+) should have message: (.*)")]
         public void ThenTheLineShouldBeHaveMessage(int row, string message)
         {
-            Assert.AreEqual(FindMessage(row,message), message);
+            Assert.AreEqual(message,FindMessage(row,message));
         }
         public string FindMessage(int row, string message)
         {
-            if(parser.Errors.Find(error => error.Row == row && error.Message == message) != null)
+            if(messages.Find(m => m.Row == row && m.Message == message) != null)
             {
-                return parser.Errors.Find(error => error.Row == row && error.Message == message).Message;
+                return messages.Find(m => m.Row == row && m.Message == message).Message;
             }
-            else if(parser.Warnings.Find(warning => warning.Row == row && warning.Message == message) != null)
+            else if(messages.Find(m => m.Row == row) != null)
             {
-                return parser.Warnings.Find(warning => warning.Row == row && warning.Message == message).Message;
-            }
-            if(parser.Errors.Find(error => error.Row == row) != null)
-            {
-                return parser.Errors.Find(error => error.Row == row).Message;
-            }else if (parser.Warnings.Find(warning => warning.Row == row) != null)
-            {
-                return parser.Warnings.Find(warning => warning.Row == row).Message;
+                return messages.Find(m => m.Row == row).Message;
             }
             return string.Empty;
         }
-        public bool SearchMessage()
+        public List<IMessage> SearchMessage()
         {
-            return parser.Errors.Any() || parser.Warnings.Any();
+            return messages.Any() ? messages : null;
         }
     }
 

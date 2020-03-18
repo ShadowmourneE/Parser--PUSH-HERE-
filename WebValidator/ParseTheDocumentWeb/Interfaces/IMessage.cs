@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ParseTheDocumentWeb.Models
 {
-    interface IMessage
+    public interface IMessage
     {
         int Row { get; set; }
         string Message { get; set; }
