@@ -141,13 +141,15 @@ Scenario: Unit 14
                          """
 	When parse
 	Then all lines should be correctly
+
 Scenario: Unit 15
     Given I have entered:
                          """
 1.8 Use appropriate dismantling and re-assembly techniques to deal with three of the following technologies: Mechanical equipment: Carry out all of the following: a) draining and replenishing fluids b) removing and refitting/replacing locking and retaining devices c) proof marking components to aid reassembly d) removing and refitting minor mechanical units/sub-assemblies (such as guards, cover plates, pulleys and belts) e) removing and refitting major mechanical components (such as shafts, gear mechanisms, bearings, clutches) f) replacing lifed items (such as filters, oils/lubricants) g) setting, aligning and adjusting replaced units Electrical equipment: Carry out all of the following: a) isolating the power supply b) disconnecting and reconnecting wires/cables c) removing and replacing minor electrical components (such as relays, sensing devices, limit switches) d) removing and replacing major electrical components (such as motors, switch/control gear) e) attaching cable end fittings (such as crimped and soldered) f) making de-energised checks before powering up Fluid power equipment: Carry out all of the following: a) chocking/supporting cylinders/rams/components b) releasing stored pressure c) removing and replacing hoses/pipes d) removing and replacing minor or lifted components (such as filters, gaskets, dust seals) e) removing and replacing major components (such as pumps, cylinders, valves, actuators) f) setting and adjusting replaced components g) making de-energised checks before re-pressurising the system Programmable controller based equipment: Carry out all of the following: a) de-activating and resetting program controller b) disconnecting and reconnecting wires/cables c) removing and replacing input/output interfacing d) removing and replacing program logic peripherals e) checking and reviewing program format and content f) editing programs using the correct procedure (where appropriate) Process instrumentation: Carry out all of the following: a) isolating instruments/sensing devices b) disconnecting supply/signal connections c) removing and replacing instruments in the system d) replacing all ‘lifed’ items (such as seals, gaskets, dust covers) e) re-connecting instrumentation pipework and power supply f) checking that signal transmission is satisfactory Electronic equipment: Carry out all of the following: a) isolating equipment from the power supply b) dismantling/disconnecting equipment to the required level c) disconnecting and reconnecting wires and cables d) removing and replacing electronic units/circuit boards e) removing and replacing electronic components f) soldering and de-soldering g) making de-energised checks before powering up;
                          """
 	When parse
-    Then the line 1 should have message: Incorrect string
+#must be correctly
+    Then all lines should be correctly
 Scenario: Unit 16
     Given I have entered:
                          """
@@ -186,5 +188,13 @@ Scenario: Unit 20
                          """
 	When parse
     Then all lines should be correctly
-      
+Scenario: Unit 21
+    Given I have entered:
+                         """
+1.13 Confirm that the equipment and program operates safely and correctly by carrying out the following, as applicable to the type of equipment used: either carry out all of the following: 1.13.1 following check that datums for each axis are set in relation to the equipment/component and tooling used 1.13.2 ensure that start-up positions are safe and correctly set 1.13.3 ensure that tooling information is correctly entered into the machine controller (such as type, number, position) 1.13.4 check that tooling change positions are safe and clear of the workpiece and other devices (such as clamps, jigs and fixtures) 1.13.5 ensure that the correct tooling is selected at the appropriate points in the program 1.13.6 check that tooling/operational paths are executed safely and correctly 1.13.7 ensure that all operations are carried out to the program coordinates 1.13.8 save edited programs 1.13.9 produce back-up copies of completed programs 1.13.10 ensure that any alterations to programs are communicated fully to the appropriate personnel  or carry out all of the following:  1.13.11 force contacts `on' and `off' and check for correct operation of peripherals 1.13.12 edit, enter and remove contacts from lines of logic, where appropriate 1.13.13 check counter and timer settings 1.13.14 save edited programs 1.13.15 produce back-ups of completed programs 1.13.16 ensure that any alterations to programs are communicated fully to the appropriate personnel                 or carry out all of the following: 1.13.17 confirm that the robot operates within the defined operating environment/envelope/cell layout 1.13.18 ensure that start-up positions are safe and correctly set 1.13.19 check that intrusion monitoring systems are operating correctly (where appropriate) 1.13.20 check that robot operations are executed safely and correctly 1.13.21 monitor and review cycle times 1.13.22 ensure that all operations are carried out to program coordinates 1.13.23 save edited programs 1.13.24 produce back-ups of completed programs 1.13.25 ensure that any alterations to programs are communicated fully to the appropriate personnel 
+1.14
+                         """
+	When parse
+    Then all lines should be correctly
+
   

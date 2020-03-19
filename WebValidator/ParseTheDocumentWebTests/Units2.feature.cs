@@ -708,7 +708,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 15", null, ((string[])(null)));
-#line 144
+#line 145
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -728,7 +728,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 145
+#line 146
     testRunner.Given("I have entered:", "1.8 Use appropriate dismantling and re-assembly techniques to deal with three of " +
                         "the following technologies: Mechanical equipment: Carry out all of the following" +
                         ": a) draining and replenishing fluids b) removing and refitting/replacing lockin" +
@@ -764,11 +764,11 @@ this.ScenarioInitialize(scenarioInfo);
                         "its/circuit boards e) removing and replacing electronic components f) soldering " +
                         "and de-soldering g) making de-energised checks before powering up;", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 149
+#line 150
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 150
-    testRunner.Then("the line 1 should have message: Incorrect string", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 152
+    testRunner.Then("all lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -780,7 +780,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 16", null, ((string[])(null)));
-#line 151
+#line 153
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -800,13 +800,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 152
+#line 154
     testRunner.Given("I have entered:", @"11 Use four of the following types of test equipment to aid fault diagnosis: a) multimeter b) pressure sources c) oscilloscope d) digital pressure indicators e) signal sources/generator f) standard test gauges g) current injection devices h) special purpose test equipment i) logic probe j) signal tracer k) other specific test equipment;", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 156
+#line 158
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 157
+#line 159
     testRunner.Then("all lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -819,7 +819,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 17", null, ((string[])(null)));
-#line 158
+#line 160
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -839,15 +839,15 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 159
+#line 161
     testRunner.Given("I have entered:", "12 Find faults that have resulted in two of the following breakdown categories: a" +
                         ") intermittent problem b) partial failure/out-of-specification output c) complet" +
                         "e breakdowns", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 163
+#line 165
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 164
+#line 166
     testRunner.Then("all lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -860,7 +860,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 18", null, ((string[])(null)));
-#line 165
+#line 167
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -880,14 +880,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 166
+#line 168
     testRunner.Given("I have entered:", @"11 Use four of the following types of test equipment to aid fault diagnosis: a) multimeter b) pressure sources c) oscilloscope d) digital pressure indicators e) signal sources/generator f) standard test gauges g) current injection devices h) special purpose test equipment i) logic probe j) signal tracer k) other specific test equipment
 12 Find faults that have resulted in two of the following breakdown categories: a) intermittent problem b) partial failure/out-of-specification output c) complete breakdowns", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 171
+#line 173
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 172
+#line 174
     testRunner.Then("all lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -900,7 +900,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 19", null, ((string[])(null)));
-#line 173
+#line 175
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -920,15 +920,15 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 174
+#line 176
     testRunner.Given("I have entered:", "12 Find faults that have resulted in two of the following breakdown categories: a" +
                         ") intermittent problem b) partial failure/out-of-specification output c) complet" +
                         "e breakdowns", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 178
+#line 180
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 179
+#line 181
     testRunner.Then("all lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -941,7 +941,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = ((string[])(null));
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 20", null, ((string[])(null)));
-#line 180
+#line 182
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -961,15 +961,80 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 181
+#line 183
     testRunner.Given("I have entered:", @"1.18 Produce welded joints which meet all of the following (with reference to BS 4872 Part 1 Weld test requirements):  
 1.18.1 welds meet the required dimensional accuracy 
 1.18.2 fillet welds are equal in leg length and slightly convex in profile, with the size of the fillet equivalent to the thickness of the material welded", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 187
+#line 189
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 188
+#line 190
+    testRunner.Then("all lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Unit 21")]
+        public virtual void Unit21()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 21", null, ((string[])(null)));
+#line 191
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 192
+    testRunner.Given("I have entered:", "1.13 Confirm that the equipment and program operates safely and correctly by carr" +
+                        "ying out the following, as applicable to the type of equipment used: either carr" +
+                        "y out all of the following: 1.13.1 following check that datums for each axis are" +
+                        " set in relation to the equipment/component and tooling used 1.13.2 ensure that " +
+                        "start-up positions are safe and correctly set 1.13.3 ensure that tooling informa" +
+                        "tion is correctly entered into the machine controller (such as type, number, pos" +
+                        "ition) 1.13.4 check that tooling change positions are safe and clear of the work" +
+                        "piece and other devices (such as clamps, jigs and fixtures) 1.13.5 ensure that t" +
+                        "he correct tooling is selected at the appropriate points in the program 1.13.6 c" +
+                        "heck that tooling/operational paths are executed safely and correctly 1.13.7 ens" +
+                        "ure that all operations are carried out to the program coordinates 1.13.8 save e" +
+                        "dited programs 1.13.9 produce back-up copies of completed programs 1.13.10 ensur" +
+                        "e that any alterations to programs are communicated fully to the appropriate per" +
+                        "sonnel  or carry out all of the following:  1.13.11 force contacts `on\' and `off" +
+                        "\' and check for correct operation of peripherals 1.13.12 edit, enter and remove " +
+                        "contacts from lines of logic, where appropriate 1.13.13 check counter and timer " +
+                        "settings 1.13.14 save edited programs 1.13.15 produce back-ups of completed prog" +
+                        "rams 1.13.16 ensure that any alterations to programs are communicated fully to t" +
+                        "he appropriate personnel                 or carry out all of the following: 1.13" +
+                        ".17 confirm that the robot operates within the defined operating environment/env" +
+                        "elope/cell layout 1.13.18 ensure that start-up positions are safe and correctly " +
+                        "set 1.13.19 check that intrusion monitoring systems are operating correctly (whe" +
+                        "re appropriate) 1.13.20 check that robot operations are executed safely and corr" +
+                        "ectly 1.13.21 monitor and review cycle times 1.13.22 ensure that all operations " +
+                        "are carried out to program coordinates 1.13.23 save edited programs 1.13.24 prod" +
+                        "uce back-ups of completed programs 1.13.25 ensure that any alterations to progra" +
+                        "ms are communicated fully to the appropriate personnel \r\n1.14", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 197
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 198
     testRunner.Then("all lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

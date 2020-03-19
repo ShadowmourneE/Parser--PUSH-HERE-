@@ -24,13 +24,13 @@
         public static Regex[] doesHaveChild = new Regex[]
         {
             new Regex(@"following|plus",RegexOptions.Compiled|RegexOptions.IgnoreCase),
-            new Regex(@"(?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following(?!.*following.*)", RegexOptions.Compiled | RegexOptions.IgnoreCase)
+            new Regex(@"(?<!(following).*)(?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following((?!following).)*$", RegexOptions.Compiled | RegexOptions.IgnoreCase)
         };
         public static Regex[] incorrectString = new Regex[]
         {
             new Regex(@"following|plus",RegexOptions.Compiled|RegexOptions.IgnoreCase),
-            new Regex(@"(?<!(following|using|include).*)\splus", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-            new Regex(@"(?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following[^)\d]*(?:([abcd]\))|(\d+(\.\d+)*))(?!.*following.*)", RegexOptions.Compiled | RegexOptions.IgnoreCase)
+            new Regex(@"(?<!(following|using|include).*)\s+plus", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+            new Regex(@"(?<!(\b(or)\b|\b(and)\b|\b(plus)\b).*)(?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following[^)\d]*(?:([a-z]\))|(\d+(\.\d+)*))((?!following).)*$", RegexOptions.Compiled | RegexOptions.IgnoreCase)
         };
         public static Regex[] checkWarnings = new Regex[]
         {
