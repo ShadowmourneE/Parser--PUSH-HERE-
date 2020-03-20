@@ -962,47 +962,6 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 183
-    testRunner.Given("I have entered:", @"1.18 Produce welded joints which meet all of the following (with reference to BS 4872 Part 1 Weld test requirements):  
-1.18.1 welds meet the required dimensional accuracy 
-1.18.2 fillet welds are equal in leg length and slightly convex in profile, with the size of the fillet equivalent to the thickness of the material welded", ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 189
- testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 190
-    testRunner.Then("all lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Unit 21")]
-        public virtual void Unit21()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 21", null, ((string[])(null)));
-#line 191
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 192
     testRunner.Given("I have entered:", "1.13 Confirm that the equipment and program operates safely and correctly by carr" +
                         "ying out the following, as applicable to the type of equipment used: either carr" +
                         "y out all of the following: 1.13.1 following check that datums for each axis are" +
@@ -1031,10 +990,50 @@ this.ScenarioInitialize(scenarioInfo);
                         "uce back-ups of completed programs 1.13.25 ensure that any alterations to progra" +
                         "ms are communicated fully to the appropriate personnel \r\n1.14", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 197
+#line 188
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 198
+#line 189
+    testRunner.Then("all lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Unit 21")]
+        public virtual void Unit21()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 21", null, ((string[])(null)));
+#line 190
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 191
+    testRunner.Given("I have entered:", @"1.2 demonstrate the required occupational behaviours in line with the job role and company objectives
+1.3 Operate and maintain the following business procedures and protocols in an engineering environment: For all of the following: health and safety, data and information management, parts and service procurement plus one from: scheduling of business activities, quality management, environmental management", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 196
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 197
     testRunner.Then("all lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
