@@ -30,14 +30,12 @@
         {
             new Regex(@"following|plus",RegexOptions.Compiled|RegexOptions.IgnoreCase),
             new Regex(@"(?<!(following|using|include).*)\s+plus", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-            new Regex(@"(?<!\b((or)|(and)|(plus))\b.*)(?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following[^)\d]*(?:([a-z]\))|(\d+(\.\d+)*))((?!following).)*$", RegexOptions.Compiled | RegexOptions.IgnoreCase)
+            new Regex(@"(?<!\b((or)|(and)|(plus))\b.*)(?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following[^)\d,;]*(?:([a-z]\))|(\d+(\.\d+)*))((?!(following)).)*$", RegexOptions.Compiled | RegexOptions.IgnoreCase)
         };
         public static Regex[] checkWarnings = new Regex[]
         {
             new Regex(@".*(following).*", RegexOptions.Compiled | RegexOptions.IgnoreCase)
         };
-        public static string[] ChildrenCriteriaLetters = new string[] { "a)", "b)", "c)", "d)", "e)" };
-
         public static IEnumerable<string> FileToCollection(Stream stream)
         {
             using var sr = new StreamReader(stream);

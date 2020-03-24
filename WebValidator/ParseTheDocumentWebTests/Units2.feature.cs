@@ -1039,6 +1039,45 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Unit 22")]
+        public virtual void Unit22()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unit 22", null, ((string[])(null)));
+#line 198
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 199
+    testRunner.Given("I have entered:", @"1.3 Use all the following organisational documentation systems, policies and procedures when arranging engineering manufacturing logistics operations: health and safety, security, regulations and industry guidelines, international/national standards and directives, roles and responsibilities, selection of transport provider, selection of appropriate transport method, product/component ordering, confidentially Plus five from the following: in-house movement of goods, national movement of goods, international movements of goods, receipt of goods (such as raw materials, processed materials), stock rotation, part/document issue levels are up to date and valid, storage of goods, dispatch of goods, recycling and disposal of the materials used during transit (such as packaging), ethics and values", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 203
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 204
+    testRunner.Then("all lines should be correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -195,5 +195,13 @@ Scenario: Unit 21
                          """
 	When parse
     Then all lines should be correctly
+Scenario: Unit 22
+    Given I have entered:
+                         """
+1.3 Use all the following organisational documentation systems, policies and procedures when arranging engineering manufacturing logistics operations: health and safety, security, regulations and industry guidelines, international/national standards and directives, roles and responsibilities, selection of transport provider, selection of appropriate transport method, product/component ordering, confidentially Plus five from the following: in-house movement of goods, national movement of goods, international movements of goods, receipt of goods (such as raw materials, processed materials), stock rotation, part/document issue levels are up to date and valid, storage of goods, dispatch of goods, recycling and disposal of the materials used during transit (such as packaging), ethics and values
+                         """
+	When parse
+    Then all lines should be correctly
+     
 
   
