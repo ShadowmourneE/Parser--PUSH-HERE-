@@ -202,6 +202,27 @@ Scenario: Unit 22
                          """
 	When parse
     Then all lines should be correctly
+Scenario: Unit 23
+    Given I have entered:
+                         """
+1.18 Produce welded joints which meet all of the following (with the regerence BS 4872 Part 1 Weld test requirements):
+                         """
+	When parse
+    Then all lines should be correctly
+Scenario: Unit 24
+    Given I have entered:
+                         """
+1.3 Carry out fault location on one the following types of marine electrical equipment: a) lighting, alarm, detection and monitoring systems b) domestic electrical equipment c) rotating electrical machines d) power generation and distribution equipment and systems
+                         """
+	When parse
+    Then all lines should be correctly
+Scenario: Unit 25
+    Given I have entered:
+                         """
+1.7 Establish the position of lifting points for three of the following: a) single legged sling b) double legged sling c) four legged sling d) multi-legged sling e) lifting beams f) spreaders Whilst taking into account all of the following: a) safe working load (SWL) b) tension c) angles d) sling length
+                         """
+	When parse
+    Then all lines should be correctly
      
 
   

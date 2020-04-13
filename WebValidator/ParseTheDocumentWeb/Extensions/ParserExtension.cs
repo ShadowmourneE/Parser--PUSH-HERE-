@@ -18,7 +18,7 @@
         {
             new Regex(@"following|plus",RegexOptions.Compiled|RegexOptions.IgnoreCase),
             new Regex(@"(((of)|(from)|(with)|(using))\s+(the\s+)?(following\s+)?)(.*\s+((plus)|(and)|(or)).*\s+((from)|(of)|(with)|(using))\sthe\sfollowing)", RegexOptions.Compiled|RegexOptions.IgnoreCase),
-            new Regex(@"(((include)(with)|(using)\s+)?((one)|(two)|(three)|(four)|(five)|(six)|(seven)|(eight)|(nine)|(ten)|(eleven)|(twelve)|(more))\s+)?((of)|(from)|(with)|(using))\s+(the\s+)?following.*:\s*•?\s*\w+", RegexOptions.Compiled|RegexOptions.IgnoreCase),
+            new Regex(@"(((include)(with)|(using)\s+)?((one)|(two)|(three)|(four)|(five)|(six)|(seven)|(eight)|(nine)|(ten)|(eleven)|(twelve)|(more))\s+)?((of)|(from)|(with)|(using))?\s+(the\s+)?following.*:\s*•?\s*\w+", RegexOptions.Compiled|RegexOptions.IgnoreCase),
             new Regex(@"include:(\s+\w+)+", RegexOptions.Compiled|RegexOptions.IgnoreCase)
         };
         public static Regex[] doesHaveChild = new Regex[]
@@ -30,7 +30,7 @@
         {
             new Regex(@"following|plus",RegexOptions.Compiled|RegexOptions.IgnoreCase),
             new Regex(@"(?<!(following|using|include).*)\s+plus", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-            new Regex(@"(?<!\b((or)|(and)|(plus))\b.*)(?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following[^)\d,;]*(?:([a-z]\))|(\d+(\.\d+)*))((?!(following)).)*$", RegexOptions.Compiled | RegexOptions.IgnoreCase)
+            new Regex(@"(?<!\b((or)|(and)|(plus)|(following))\b.*)(?:(?:all)|(?:both))\s+(?:(?:from)|(?:of)\s+)?the\s+following[^)\d,;]*(?:([a-z]\))|(\d+(\.\d+)*))((?!(following))[^:])*$", RegexOptions.Compiled | RegexOptions.IgnoreCase)
         };
         public static Regex[] checkWarnings = new Regex[]
         {
