@@ -223,6 +223,14 @@ Scenario: Unit 25
                          """
 	When parse
     Then all lines should be correctly
+Scenario: Unit 26
+    Given I have entered:
+                         """
+Unit 123 : Something name
+Unit 452 : Something name
+                         """
+	When parse
+    Then the line 2 should have message: Unit with the same name already exist
      
 
   

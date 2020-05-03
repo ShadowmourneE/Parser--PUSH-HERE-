@@ -1,5 +1,6 @@
 ﻿namespace ParseTheDocumentWeb.Extensions
 {
+    using ParseTheDocumentWeb.Models;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -184,6 +185,16 @@
             var isValid = criteria.Split('.').Select((x) => int.TryParse(x, out var isParsed)).All(x => x);
 
             return isValid;
+        }
+        public static Unit GetUnit(string line, int row)
+        {
+            var regex = new Regex(@".*:([^\r$]*)");
+            var match = regex.Match(line);
+            if (match.Success)
+            {
+                return new Unit { Name = match.Groups[1].Value, Row =  row};
+            }
+            return null;
         }
     }
 }

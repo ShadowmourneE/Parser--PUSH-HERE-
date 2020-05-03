@@ -6,6 +6,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
 
     public class MultipleLevelsParser : IMultipleLevelsParser
     {
@@ -15,6 +16,7 @@
         private List<Warning> _warnings;
         private List<string> _errorsList;
         private List<string> _warningsPairs;
+        private HashSet<Unit> _units;
         public delegate void ParserErrorHandler(List<Error> errors, List<Warning> warnings);
         public event ParserErrorHandler CompletedNotify;
         public List<Error> Errors
@@ -45,6 +47,7 @@
             _warnings = new List<Warning>();
             _errorsList = new List<string>();
             _warningsPairs = new List<string>();
+            _units = new HashSet<Unit>();
             var unitNumber = _indexTemplate;
             var unitIndex = 0;
 
@@ -57,6 +60,11 @@
                 {
                     if (file[rowIndex].StartsWith("Unit"))
                     {
+                        var unit = ParserExtension.GetUnit(file[rowIndex], rowIndex + 1);
+                        if (_units.Any(u => u.Name == unit.Name && u.Row != unit.Row) && !_errors.Any(u => u.Row == unit.Row))
+                            _errors.Add(new Error { Row = rowIndex + 1, Message = "Unit with the same name already exist", Line = file[rowIndex] + " ◎◎◎" + " Look at line " + _units.First(u => u.Name == unit.Name && u.Row != unit.Row).Row + "." });
+                        else
+                            _units.Add(unit);
                         unitNumber = $"{_indexTemplate}.{++unitIndex}";
                         if (string.IsNullOrWhiteSpace(parentNodeNumber))
                         {
