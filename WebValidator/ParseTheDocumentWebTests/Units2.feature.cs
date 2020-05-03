@@ -1224,12 +1224,12 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 227
-    testRunner.Given("I have entered:", "Unit 123 : Something name\r\nUnit 452 : Something name", ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 232
- testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.Given("I have entered:", "Unit 123 : Something name\r\nUnit 452 : Something name\r\nUnit 234 asdfasdf", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 233
+ testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 234
     testRunner.Then("the line 2 should have message: Unit with the same name already exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

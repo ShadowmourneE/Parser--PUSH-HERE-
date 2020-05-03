@@ -228,6 +228,7 @@ Scenario: Unit 26
                          """
 Unit 123 : Something name
 Unit 452 : Something name
+Unit 234 asdfasdf
                          """
 	When parse
     Then the line 2 should have message: Unit with the same name already exist

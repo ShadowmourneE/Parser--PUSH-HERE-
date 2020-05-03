@@ -61,10 +61,11 @@
                     if (file[rowIndex].StartsWith("Unit"))
                     {
                         var unit = ParserExtension.GetUnit(file[rowIndex], rowIndex + 1);
-                        if (_units.Any(u => u.Name == unit.Name && u.Row != unit.Row) && !_errors.Any(u => u.Row == unit.Row))
-                            _errors.Add(new Error { Row = rowIndex + 1, Message = "Unit with the same name already exist", Line = file[rowIndex] + " ◎◎◎" + " Look at line " + _units.First(u => u.Name == unit.Name && u.Row != unit.Row).Row + "." });
+                        if (unit != null && _units.Any(u => u.Name == unit.Name && u.Row != unit.Row) && !_errors.Any(u => u.Row == unit.Row))
+                            _errors.Add(new Error { Row = rowIndex + 1, Message = "Unit with the same name already exist", Line = file[rowIndex] + " ◎◎◎" + " Look at line - " + _units.First(u => u.Name == unit.Name && u.Row != unit.Row).Row + "." });
                         else
-                            _units.Add(unit);
+                            if (unit != null && !_units.Any(u => u.Name == unit.Name))
+                                _units.Add(unit);
                         unitNumber = $"{_indexTemplate}.{++unitIndex}";
                         if (string.IsNullOrWhiteSpace(parentNodeNumber))
                         {
