@@ -232,6 +232,14 @@ Unit 234 asdfasdf
                          """
 	When parse
     Then the line 2 should have message: Unit with the same name already exist
+Scenario: Unit 27
+    Given I have entered:
+                         """
+Unit 123 : Something name
+Unit 234 asdfasdf
+                         """
+	When parse
+    Then the line 2 should have message: Unit title is wrong format
      
 
   
