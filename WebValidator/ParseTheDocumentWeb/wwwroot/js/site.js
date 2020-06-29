@@ -1,12 +1,35 @@
 ﻿function onSubmitEventSuccess(e) {
     //init errors
     $('#errors').remove();
-    $('<div id="errors" class="container text-danger"></div>').appendTo('body');
+    $('<div id="errors" class="container"></div>').appendTo('body');
     console.log(e.responseJSON);
     if (e.responseJSON.errors.length) {
         console.log(errors);
         e.responseJSON.errors.forEach(function (error, index) {
-            $('#errors').append(`<span>◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
+            if (error.message == "String doesn't start with number") {
+                $('#errors').append(`<span style="color:#CD5C5C">◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
+            }
+            if (error.message == "Nesting does't match previous") {
+                $('#errors').append(`<span style="color:#008080">◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
+            }
+            if (error.message == "Wrong numbering") {
+                $('#errors').append(`<span style="color:#800080">◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
+            }
+            if (error.message == "Line in the wrong format for children") {
+                $('#errors').append(`<span style="color:#800000">◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
+            }
+            if (error.message == "Line is not formatted correctly for concatenation") {
+                $('#errors').append(`<span style="color:#808000">◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
+            }
+            if (error.message == "Incorrect string") {
+                $('#errors').append(`<span style="color:#FF0000">◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
+            }
+            if (error.message == "Template is not valid!") {
+                $('#errors').append(`<span style="color:#F39C12">◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
+            }
+            if (error.message == "Not unique content or invalid string") {
+                $('#errors').append(`<span style="color:#000080">◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
+            } 
         });
     } else {
         $('#errors').append(`<span class="text-success">No errors</span><br/>`);

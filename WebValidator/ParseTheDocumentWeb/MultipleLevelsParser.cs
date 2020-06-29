@@ -117,6 +117,10 @@
                                 {
                                     _errors.Add(new Error { Row = rowIndex + 1, Message = "Nesting does't match previous", Line = file[rowIndex] });
                                 }
+                                if (!NumberingChecks.IsCorrectNumbering(prevNodeNumber, currentNodeNumberFull))
+                                {
+                                    _errors.Add(new Error { Row = rowIndex + 1, Message = "Wrong numbering", Line = file[rowIndex] });
+                                }
                                 try
                                 {
                                     bool needCheckWarning = false;

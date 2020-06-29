@@ -63,5 +63,20 @@ namespace ParseTheDocumentWeb.Extensions
             currentNumbering = currentNumbering.Take(lastIndex).ToArray();
             return prevNumbering.SequenceEqual(currentNumbering);
         }
+
+        public static bool IsCorrectNumbering(string prev, string current)
+        {
+            if (String.IsNullOrEmpty(prev) || String.IsNullOrEmpty(current))
+                return true;
+            var prevNumbering = prev.Split('.')
+                .Select(n => int.Parse(n))
+                .ToArray()
+                .Last();
+            var currentNumbering = current.Split('.')
+                .Select(n => int.Parse(n))
+                .ToArray()
+                .Last();
+            return currentNumbering - prevNumbering == 1;
+        }
     }
 }
