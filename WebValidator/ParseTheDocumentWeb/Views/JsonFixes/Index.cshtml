@@ -1,0 +1,13 @@
+﻿<div class="d-flex instruction">
+    <div class="text-center">1. Click 'Choose file' button and upload json file</div>
+</div>
+<style>
+    input{
+        margin: 5px;
+    }
+</style>
+<form asp-action="UpdateJson" asp-controller="JsonFixes" data-ajax="true" data-ajax-method="post" class="form-inline" enctype="multipart/form-data" data-ajax-complete="onSaveFile">
+    <input type="file" required name="uploadedFile" class="btn" />
+    <input type="number" required name="firstId" class="form-control" />
+    <input type="submit" class="btn btn-success" value="Update json" />
+</form>

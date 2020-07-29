@@ -58,3 +58,15 @@
         $('#warnings').append(`<span class="text-success">No warnings</span><br/>`);
     }
 }
+function onSaveFile(file) {
+    if (file != null) {
+        kendo.saveAs({
+            dataURI: file.responseJSON.dataURI,
+            fileName: file.responseJSON.fileName
+        });
+    }
+    else {
+        return;
+    }
+    
+}
