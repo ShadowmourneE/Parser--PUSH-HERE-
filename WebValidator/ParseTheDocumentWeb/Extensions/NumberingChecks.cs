@@ -8,11 +8,17 @@ namespace ParseTheDocumentWeb.Extensions
 {
     public static class NumberingChecks
     {
-        //Example: current 1.1.1.3.1 prev 1.1.1.3 check 1.1.1.3==1.1.1.3
+        //Example: current 1.1.1.3.1 prev 1.1.1.3 check 1.1.1.3==1.1.1.3 and current start from 1 or 01 -
         public static bool CheckRoot(string prev, string current)
         {
             if (String.IsNullOrEmpty(prev) || String.IsNullOrEmpty(current))
                 return true;
+
+            string lastNumber = current.Split('.').Last();
+            if (lastNumber == "1" ? false : lastNumber == "01" ? false : true) {
+                return false;
+            }
+
             var prevNumbering = prev.Split('.').
                 Select(n => int.Parse(n)).
                 ToArray();
@@ -20,6 +26,7 @@ namespace ParseTheDocumentWeb.Extensions
                 Select(n => int.Parse(n)).
                 Take(prevNumbering.Count()).
                 ToArray();
+
             return prevNumbering.SequenceEqual(currentNumbering);
         }
         //Example: current 1.1.1.4 prev 1.1.1.3.1 check 1.1.1 == 1.1.1 and 4>3

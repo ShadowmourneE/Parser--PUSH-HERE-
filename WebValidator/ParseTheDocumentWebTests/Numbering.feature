@@ -40,7 +40,6 @@ Scenario: CheckNumberingCurrent with Unit
                          """
 	When parse
 	Then the line 3 should have message: Nesting does't match previous
-    #Then the line should be have message: line - 3. nesting does't match previous
 Scenario: Check correct numbering
     Given I have entered:
                          """
@@ -49,3 +48,13 @@ Scenario: Check correct numbering
                          """
 	When parse
     Then the line 2 should have message: Wrong numbering
+Scenario: Check first numbering
+    Given I have entered:
+                         """
+1.11.12.2 Something text
+1.11.12.2.2 Something text
+                         """
+	When parse
+    Then the line 2 should have message: Nesting does't match previous
+
+
