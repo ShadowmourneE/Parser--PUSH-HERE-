@@ -56,5 +56,14 @@ Scenario: Check first numbering
                          """
 	When parse
     Then the line 2 should have message: Nesting does't match previous
+Scenario: Check prev numbering
+    Given I have entered:
+                       """
+1.11.12.2 Something text
+1.11.12.2.1 Something text
+1.11.12.2.3 Something text
+                         """
+	When parse
+    Then the line 3 should have message: Wrong numbering
 
 
