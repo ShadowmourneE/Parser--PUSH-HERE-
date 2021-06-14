@@ -28,12 +28,13 @@
                 Microsoft.Office.Interop.Excel.Worksheet workSheet = workBook.ActiveSheet;
                 workSheet.Cells[1, "A"] = "Index";
                 workSheet.Cells[1, "B"] = "Name";
-                workSheet.Cells[1, "C"] = "Description";
-                workSheet.Cells[1, "D"] = "Type";
-                workSheet.Cells[1, "E"] = "Level";
+                workSheet.Cells[1, "C"] = "AimReferences";
+                workSheet.Cells[1, "D"] = "Description";
+                workSheet.Cells[1, "E"] = "Type";
+                workSheet.Cells[1, "F"] = "Level";
 
-                workSheet.Cells[2, "D"] = "LearningFramework";
-                workSheet.Cells[3, "D"] = "Qualification";
+                workSheet.Cells[2, "E"] = "LearningFramework";
+                workSheet.Cells[3, "E"] = "Qualification";
                 workSheet.Cells[2, "A"] = "1";
                 workSheet.Cells[3, "A"] = "1.1";
                 int j = 0;
@@ -50,11 +51,11 @@
                     workSheet.Cells[i, "B"] = value;
                     if (value.StartsWith("Unit"))
                     {
-                        workSheet.Cells[i, "D"] = "Unit";
+                        workSheet.Cells[i, "E"] = "Unit";
                     }
                     else
                     {
-                        workSheet.Cells[i, "D"] = "Criterion";
+                        workSheet.Cells[i, "E"] = "Criterion";
                     }
                     j++;
                 }
