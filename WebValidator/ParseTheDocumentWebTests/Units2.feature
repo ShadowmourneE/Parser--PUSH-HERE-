@@ -240,6 +240,18 @@ Unit 234 asdfasdf
                          """
 	When parse
     Then the line 2 should have message: Unit title is wrong format
+Scenario: Unit 28
+    
+	Given I have entered:
+                         """
+                         Unit dafdfasdfa
+                         1 asdkjfakjsdfakjsdf
+                         2  asdfasdfa all of the following:
+                         2.1 one of the following: ad;lsfakdhldasfkja aasdhflasd
+                         2.2 one of the following: ad;lsfakdhldasfkja aasdhflasd
+                         """
+	When parse
+	Then the line 5 should have message: Duplicated criteria
      
 
   

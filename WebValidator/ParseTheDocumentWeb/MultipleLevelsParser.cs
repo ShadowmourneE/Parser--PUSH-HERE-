@@ -185,6 +185,11 @@
                                     }
                                 }
 
+                                if (rowIndex != 0 && ParserExtension.CheckForDuplicated(file[rowIndex], file[rowIndex - 1]))
+                                {
+                                    _errors.Add(new Error { Row = rowIndex + 1, Message = "Duplicated criteria", Line = file[rowIndex] });
+                                }
+
                                 prevNodeNumber = currentNodeNumberFull;
                                 if (!_excelMapper.ContainsKey(currentNodeNumberFull))
                                 {

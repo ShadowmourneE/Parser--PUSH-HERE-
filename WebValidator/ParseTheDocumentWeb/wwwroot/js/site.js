@@ -29,7 +29,10 @@
             }
             if (error.message == "Not unique content or invalid string") {
                 $('#errors').append(`<span style="color:#000080">◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
-            } 
+            }
+            if (error.message == "Duplicated criteria") {
+                $('#errors').append(`<span style="color:#b71c1c">◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
+            }
         });
     } else {
         $('#errors').append(`<span class="text-success">No errors</span><br/>`);

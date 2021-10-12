@@ -196,5 +196,17 @@
             }
             return null;
         }
+
+        public static bool CheckForDuplicated(string currentCriteria, string previouslyCriteria)
+        {
+            var criteriaNumberRegex = new Regex(@"^\d+(\.\d+)*");
+            currentCriteria = criteriaNumberRegex.Replace(currentCriteria, string.Empty).Trim('\r'); ;
+            previouslyCriteria = criteriaNumberRegex.Replace(previouslyCriteria, string.Empty).Trim('\r');
+            if (string.CompareOrdinal(currentCriteria, previouslyCriteria) == 0) {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
