@@ -106,9 +106,8 @@
                             {
                                 template += $".{indexForCurrentStringNext}";
                                 _excelMapper.Add(template, file[nodeIndexNext]);
-                                
                                 return nodeIndexNext + 1 < file.Length ?
-                                        file[nodeIndexNext + 1].Count(x => x == '.') >= file[nodeIndexNext].Count(x => x == '.') ?
+                                        file[nodeIndexNext + 1].Count(x => x == '.') >= file[nodeIndexNext].Count(x => x == '.') && !file[nodeIndexNext + 1].StartsWith("Unit") ?
                                             BuildTree(nodeIndexNext + 1, ParserExtension.GetCriterionNumberOfString(file[nodeIndexNext + 1]), indexTemplate)
                                         : nodeIndexNext
                                     : null;
