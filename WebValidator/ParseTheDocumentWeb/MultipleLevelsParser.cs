@@ -159,13 +159,13 @@
                                             haveError = true;
                                         }
                                     }
-                                    if (!haveError && needCheckWarning)
-                                    {
-                                        if (!ParserExtension.CheckWarnings(file[rowIndex]))// check warning regexp
-                                        {
-                                            _warnings.Add(new Warning { Row = rowIndex + 1, Message = "Check this line", Line = file[rowIndex] });
-                                        }
-                                    }
+                                    //if (!haveError && needCheckWarning)
+                                    //{
+                                    //    if (!ParserExtension.CheckWarnings(file[rowIndex]))// check warning regexp
+                                    //    {
+                                    //        _warnings.Add(new Warning { Row = rowIndex + 1, Message = "Check this line", Line = file[rowIndex] });
+                                    //    }
+                                    //}
                                     if (ParserExtension.ContainsDirtyInfo(file[rowIndex]))
                                     {
                                         _warnings.Add(new Warning { Row = rowIndex + 1, Message = "Maybe there useless information exists", Line = file[rowIndex] });
