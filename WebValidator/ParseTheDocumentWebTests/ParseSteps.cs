@@ -26,7 +26,7 @@ namespace ParseTheDocumentWebTests
         [When(@"parse")]
         public void Parse()
         {
-            parser.StartParse(file.ToArray());
+            parser.StartParseQualifications(file.ToArray());
             messages.AddRange(parser.Errors);
             messages.AddRange(parser.Warnings);
 

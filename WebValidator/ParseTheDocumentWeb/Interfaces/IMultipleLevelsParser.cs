@@ -1,10 +1,14 @@
-﻿using static ParseTheDocumentWeb.MultipleLevelsParser;
+﻿using Microsoft.AspNetCore.Http;
+using static ParseTheDocumentWeb.MultipleLevelsParser;
 
 namespace ParseTheDocumentWeb.Interfaces
 {
     public interface IMultipleLevelsParser
     {
-        void StartParse(string[] file);
+        void StartParseQualifications(string[] file);
+
+        void StartParseStandarts(IFormFile file);
+
         event ParserErrorHandler CompletedNotify;
     }
 }

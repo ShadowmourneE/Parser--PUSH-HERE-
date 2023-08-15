@@ -1,12 +1,13 @@
 ﻿namespace ParseTheDocumentWeb
 {
+    using Microsoft.AspNetCore.Http;
+    using OfficeOpenXml;
     using ParseTheDocumentWeb.Extensions;
     using ParseTheDocumentWeb.Interfaces;
     using ParseTheDocumentWeb.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.CompilerServices;
 
     public class MultipleLevelsParser : IMultipleLevelsParser
     {
@@ -19,6 +20,14 @@
         private HashSet<Unit> _units;
         public delegate void ParserErrorHandler(List<Error> errors, List<Warning> warnings);
         public event ParserErrorHandler CompletedNotify;
+
+        private List<string> StandartTypes = new List<string>
+        {
+            "Skill",
+            "Behaviour",
+            "Knowledge",
+        };
+
         public List<Error> Errors
         {
             get { return _errors; }
@@ -39,8 +48,35 @@
             _warningsPairs = new List<string>();
         }
 
+        public void StartParseStandarts(IFormFile file)
+        {
+            _errors = new List<Error>();
+            _warnings = new List<Warning>();
 
-        public void StartParse(string[] file)
+            using (var stream = file.OpenReadStream())
+            {
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                using (var package = new ExcelPackage(stream))
+                {
+                    var worksheet = package.Workbook.Worksheets[0]; // Assuming the data is in the first worksheet
+
+                    for (int row = worksheet.Dimension.Start.Row + 2; row <= worksheet.Dimension.End.Row; row++)
+                    {
+                        var standartType = worksheet.Cells[row, 5].Value;
+                        if(!StandartTypes.Contains(standartType))
+                        {
+                            _errors.Add(new Error { Row = row, Message = "Wrong standart type", Line = standartType + " ◎◎◎" + " Look at line - " +  row });
+                        }
+                    }
+                }
+            }
+
+            this.OnParsingCompleted();
+
+        }
+
+
+        public void StartParseQualifications(string[] file)
         {
             _excelMapper = new Dictionary<string, string>(file.Length);
             _errors = new List<Error>();

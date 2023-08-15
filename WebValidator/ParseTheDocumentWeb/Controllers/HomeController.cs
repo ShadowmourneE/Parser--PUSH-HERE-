@@ -8,7 +8,6 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
-    using System.Text.Json;
 
     public class HomeController : Controller { 
         private readonly IMultipleLevelsParser _parser;
@@ -28,18 +27,31 @@
         }
 
         [HttpPost]
-        public JsonResult ValidateFile(IFormFile uploadedFile)
+        public JsonResult ValidateQualificationFile(IFormFile uploadedFile)
         {
             if (uploadedFile != null)
             {
                 var stream = uploadedFile.OpenReadStream();
                 var file = ParserExtension.FileToCollection(stream);
                 _parser.CompletedNotify += CompletedHandler;
-                _parser.StartParse(file.ToArray());
+                _parser.StartParseQualifications(file.ToArray());
 
             }
             return Json(new { errors = _errors, warnings = _warnings });
         }
+
+        [HttpPost]
+        public JsonResult ValidateStandartFile(IFormFile uploadedFile)
+        {
+            if (uploadedFile != null)
+            {
+                _parser.CompletedNotify += CompletedHandler;
+                _parser.StartParseStandarts(uploadedFile);
+
+            }
+            return Json(new { errors = _errors, warnings = _warnings });
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

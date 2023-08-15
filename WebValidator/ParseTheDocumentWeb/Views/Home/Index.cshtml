@@ -9,11 +9,19 @@
         <div class="text-warning">WARNINGS - YELLOW</div>
     </div>
 </div>
-<form asp-action="ValidateFile" asp-controller="Home" data-ajax="true" data-ajax-method="post" enctype="multipart/form-data" data-ajax-complete="onSubmitEventSuccess">
-    <input type="file" name="uploadedFile" class="btn" />
-    <br>
-    <input type="submit" class="btn btn-success" value="Click to validate" />
-</form>
+<div class="d-flex justify-content-between">
+    <form asp-action="ValidateQualificationFile" asp-controller="Home" data-ajax="true" data-ajax-method="post" enctype="multipart/form-data" data-ajax-complete="onSubmitEventSuccess">
+        <input type="file" name="uploadedFile" class="btn" />
+        <br>
+        <input type="submit" class="btn btn-success" value="Click to validate qualifications" />
+    </form>
+    <form asp-action="ValidateStandartFile" asp-controller="Home" data-ajax="true" data-ajax-method="post" enctype="multipart/form-data" data-ajax-complete="onSubmitEventSuccess">
+        <input type="file" name="uploadedFile" class="btn" />
+        <br>
+        <input type="submit" class="btn btn-info" value="Click to validate standarts" />
+    </form>
+</div>
+
 
 <!--Render errors heere-->
 <div id="errors" class="container text-danger"></div>

@@ -33,6 +33,9 @@
             if (error.message == "Duplicated criteria") {
                 $('#errors').append(`<span style="color:#b71c1c">◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
             }
+            if (error.message == "Wrong standart type") {
+                $('#errors').append(`<span style="color:#FF0000">◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
+            }
         });
     } else {
         $('#errors').append(`<span class="text-success">No errors</span><br/>`);
