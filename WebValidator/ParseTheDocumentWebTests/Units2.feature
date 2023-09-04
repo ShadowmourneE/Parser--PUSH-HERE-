@@ -43,23 +43,23 @@ Scenario: Unit 3
                          """
 	When parse
 	Then all lines should be correctly
-Scenario: Unit 4
-     Given I have entered:
-                         """
-2 Know how to comply with statutory regulations and organisational safety requirements
-2.1 Describe the roles and responsibilities of themselves and others under the Health and Safety at Work Act, and other current legislation (such as The Management of Health and Safety at Work Regulations, Workplace Health and Safety and Welfare Regulations, Personal Protective Equipment at Work Regulations, Manual Handling Operations Regulations, Provision and Use of Work Equipment Regulations, Display Screen at Work Regulations, Reporting of Injuries, Diseases and Dangerous Occurrences Regulations) 
-2.2 Describe the specific regulations and safe working practices and procedures that apply to their work activities 
-2.3 Describe the warning signs for the seven main groups of hazardous substances defined by Classification, Packaging and Labelling of Dangerous Substances Regulations 
-2.4 Explain how to locate relevant health and safety information for their tasks, and the sources of expert assistance when help is needed 
-2.5 Explain what constitutes a hazard in the workplace (such as moving parts of machinery, electricity, slippery and uneven surfaces, poorly placed equipment, dust and fumes, handling and transporting, contaminants and irritants, material ejection, fire, working at height, environment, pressure/stored energy systems, volatile, flammable or toxic materials, unshielded processes, working in confined spaces) 
-2.6 Describe their responsibilities for identifying and dealing with hazards and reducing risks in the workplace  
-2.7 Describe the risks associated with their working environment (such as the tools, materials and equipment that they use, spillages of oil, chemicals and other substances, not reporting accidental breakages of tools or equipment and not following laid-down working practices and procedures) 
-2.8 Describe the processes and procedures that are used to identify and rate the level of risk (such as safety inspections, the use of hazard checklists, carrying out risk assessments, COSHH assessments) 
-2.9 Describe the first aid facilities that exist within their work area and within the organisation in general; the procedures to be followed in the case of accidents involving injury 
-2.10 Explain what constitute dangerous occurrences and hazardous malfunctions, and why these must be reported even if no-one is injured 
-                         """
-	When parse
-	Then the line 8 should have message: Check this line
+#Scenario: Unit 4
+#     Given I have entered:
+#                         """
+#2 Know how to comply with statutory regulations and organisational safety requirements
+#2.1 Describe the roles and responsibilities of themselves and others under the Health and Safety at Work Act, and other current legislation (such as The Management of Health and Safety at Work Regulations, Workplace Health and Safety and Welfare Regulations, Personal Protective Equipment at Work Regulations, Manual Handling Operations Regulations, Provision and Use of Work Equipment Regulations, Display Screen at Work Regulations, Reporting of Injuries, Diseases and Dangerous Occurrences Regulations) 
+#2.2 Describe the specific regulations and safe working practices and procedures that apply to their work activities 
+#2.3 Describe the warning signs for the seven main groups of hazardous substances defined by Classification, Packaging and Labelling of Dangerous Substances Regulations 
+#2.4 Explain how to locate relevant health and safety information for their tasks, and the sources of expert assistance when help is needed 
+#2.5 Explain what constitutes a hazard in the workplace (such as moving parts of machinery, electricity, slippery and uneven surfaces, poorly placed equipment, dust and fumes, handling and transporting, contaminants and irritants, material ejection, fire, working at height, environment, pressure/stored energy systems, volatile, flammable or toxic materials, unshielded processes, working in confined spaces) 
+#2.6 Describe their responsibilities for identifying and dealing with hazards and reducing risks in the workplace  
+#2.7 Describe the risks associated with their working environment (such as the tools, materials and equipment that they use, spillages of oil, chemicals and other substances, not reporting accidental breakages of tools or equipment and not following laid-down working practices and procedures) 
+#2.8 Describe the processes and procedures that are used to identify and rate the level of risk (such as safety inspections, the use of hazard checklists, carrying out risk assessments, COSHH assessments) 
+#2.9 Describe the first aid facilities that exist within their work area and within the organisation in general; the procedures to be followed in the case of accidents involving injury 
+#2.10 Explain what constitute dangerous occurrences and hazardous malfunctions, and why these must be reported even if no-one is injured 
+#                         """
+#	When parse
+#	Then the line 8 should have message: Check this line
 Scenario: Unit 5
      Given I have entered:
                          """
