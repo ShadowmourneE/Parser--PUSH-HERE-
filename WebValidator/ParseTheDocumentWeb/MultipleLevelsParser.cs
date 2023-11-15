@@ -100,8 +100,8 @@
                         if (unit == null)
                             _errors.Add(new Error { Row = rowIndex + 1, Message = "Unit title is wrong format", Line = file[rowIndex] });
                         else 
-                            if (_units.Any(u => u.Name == unit.Name && u.Row != unit.Row) && !_errors.Any(u => u.Row == unit.Row))
-                                _errors.Add(new Error { Row = rowIndex + 1, Message = "Unit with the same name already exist", Line = file[rowIndex] + " ◎◎◎" + " Look at line - " + _units.First(u => u.Name == unit.Name && u.Row != unit.Row).Row + "." });
+                            if (_units.Any(u => string.CompareOrdinal(u.Name.Trim(), unit.Name.Trim()) == 0 && u.Row != unit.Row) && !_errors.Any(u => u.Row == unit.Row))
+                                _errors.Add(new Error { Row = rowIndex + 1, Message = "Unit with the same name already exist", Line = file[rowIndex] + " ◎◎◎" + " Look at line - " + _units.First(u => string.CompareOrdinal(u.Name.Trim(), unit.Name.Trim()) == 0 && u.Row != unit.Row).Row + "." });
                             else 
                                 if (!_units.Any(u => u.Name == unit.Name))
                                     _units.Add(unit);
@@ -205,6 +205,16 @@
                                     if (ParserExtension.ContainsDirtyInfo(file[rowIndex]))
                                     {
                                         _warnings.Add(new Warning { Row = rowIndex + 1, Message = "Maybe there useless information exists", Line = file[rowIndex] });
+                                    }
+
+                                    if (ParserExtension.ContainsDuplicatesWords(file[rowIndex]))
+                                    {
+                                        _warnings.Add(new Warning { Row = rowIndex + 1, Message = "This criteria contains repeating words", Line = file[rowIndex] });
+                                    }
+
+                                    if (ParserExtension.ContainsLongWord(file[rowIndex]))
+                                    {
+                                        _warnings.Add(new Warning { Row = rowIndex + 1, Message = "This criteria contains long word", Line = file[rowIndex] });
                                     }
 
                                     if (!currentNodeNumberFull.IsTemplateValid())

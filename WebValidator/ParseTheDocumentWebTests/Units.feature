@@ -5,7 +5,7 @@ Scenario: Unit 1
     
 	Given I have entered:
                          """
-                         1 bla bla bla
+                         1 bla blabla
                          1.1 Work safely at all times, complying with health and safety legislation, regulations and other relevant guidelines
                          1.2 Demonstrate the required behaviours in line with the job role and company objectives
                          1.3 Carry out all of the following during the pipe bending, forming and fitting activities:
@@ -36,7 +36,7 @@ Scenario: Unit 3
     Given I have entered:
                          """
                          1.2 Carry out forming operations which produce components having all of the following shapes: 1.15.1 bends/upstands 1.15.2 tray/box sections 1.15.3 folds/safe edges 1.15.4 cylindrical sections Plus one more from the following: 1.15.5 wired edges 1.15.6 cowlings and rounded covers
-                         1.3 Use both of the following types of forming equipment/techniques: 1.14.1 bending machine (hand or powered) 1.14.2 rolling machine (hand or powered) Plus two more from the following: 1.14.3 hammers/panel beating equipment 1.14.4 wheeling machine 1.14.5 stakes and formers 1.14.6 swaging machine 1.14.7 presses 1.14.8 shrinking techniques 1.14.9 jenny/wiring machine 1.14.10 stretching techniques
+                         1.3 Use both of the following types of forming equipment / techniques: 1.14.1 bending machine (hand or powered) 1.14.2 rolling machine (hand or powered) Plus two more from the following: 1.14.3 hammers/panel beating equipment 1.14.4 wheeling machine 1.14.5 stakes and formers 1.14.6 swaging machine 1.14.7 presses 1.14.8 shrinking techniques 1.14.9 jenny/wiring machine 1.14.10 stretching techniques
                          """
 	When parse
     #correctly p. 1.2, 1.3 

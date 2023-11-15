@@ -36,6 +36,9 @@
             if (error.message == "Wrong standart type") {
                 $('#errors').append(`<span style="color:#FF0000">◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
             }
+            if (error.message == "Unit with the same name already exist") {
+                $('#errors').append(`<span style="color:#FF0000">◉ line - ${error.row}. ${error.message}</span><br/><span>${error.line}</span><br/><hr/>`);
+            }
         });
     } else {
         $('#errors').append(`<span class="text-success">No errors</span><br/>`);
