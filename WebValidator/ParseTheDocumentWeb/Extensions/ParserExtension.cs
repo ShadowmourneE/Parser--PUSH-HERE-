@@ -87,12 +87,8 @@
                 .Select(x => x.Trim())
                 .ToArray();
 
-            for(int i = 0; i < words.Length; i++)
+            for(int i = 0; i < words.Length - 1; i++)
             {
-                if(i == words.Length - 1)
-                {
-                    break;
-                }
                 if (words[i] == words[i + 1])
                 {
                     return true;
@@ -105,7 +101,7 @@
         public static bool ContainsLongWord(string currentCriteria)
         {
             string[] words = currentCriteria
-                .Split(new[] { ' ', ',', '.', ';', ':' }, StringSplitOptions.RemoveEmptyEntries)
+                .Split(new[] { ' ', ',', '.', ';', ':', '/', '-' }, StringSplitOptions.RemoveEmptyEntries)
                 .Where(x => !int.TryParse(x, out int result))
                 .Select(x => x.Trim())
                 .ToArray();

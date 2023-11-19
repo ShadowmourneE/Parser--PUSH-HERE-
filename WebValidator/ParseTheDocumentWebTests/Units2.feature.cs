@@ -535,38 +535,38 @@ this.ScenarioInitialize(scenarioInfo);
 #line 146
     testRunner.Given("I have entered:", "1.8 Use appropriate dismantling and re-assembly techniques to deal with three of " +
                         "the following technologies: Mechanical equipment: Carry out all of the following" +
-                        ": a) draining and replenishing fluids b) removing and refitting / replacing lock" +
-                        "ing and retaining devices c) proof marking components to aid reassembly d) remov" +
-                        "ing and refitting minor mechanical units / sub-assemblies (such as guards, cover" +
-                        " plates, pulleys and belts) e) removing and refitting major mechanical component" +
-                        "s (such as shafts, gear mechanisms, bearings, clutches) f) replacing lifed items" +
-                        " (such as filters, oils/lubricants) g) setting, aligning and adjusting replaced " +
-                        "units Electrical equipment: Carry out all of the following: a) isolating the pow" +
-                        "er supply b) disconnecting and reconnecting wires/cables c) removing and replaci" +
-                        "ng minor electrical components (such as relays, sensing devices, limit switches)" +
-                        " d) removing and replacing major electrical components (such as motors, switch/c" +
-                        "ontrol gear) e) attaching cable end fittings (such as crimped and soldered) f) m" +
-                        "aking de-energised checks before powering up Fluid power equipment: Carry out al" +
-                        "l of the following: a) chocking/supporting cylinders / rams / components b) rele" +
-                        "asing stored pressure c) removing and replacing hoses/pipes d) removing and repl" +
-                        "acing minor or lifted components (such as filters, gaskets, dust seals) e) remov" +
-                        "ing and replacing major components (such as pumps, cylinders, valves, actuators)" +
-                        " f) setting and adjusting replaced components g) making de-energised checks befo" +
-                        "re re-pressurising the system Programmable controller based equipment: Carry out" +
-                        " all of the following: a) de-activating and resetting program controller b) disc" +
-                        "onnecting and reconnecting wires/cables c) removing and replacing input/output i" +
-                        "nterfacing d) removing and replacing program logic peripherals e) checking and r" +
-                        "eviewing program format and content f) editing programs using the correct proced" +
-                        "ure (where appropriate) Process instrumentation: Carry out all of the following:" +
-                        " a) isolating instruments/sensing devices b) disconnecting supply/signal connect" +
-                        "ions c) removing and replacing instruments in the system d) replacing all ‘lifed" +
-                        "’ items (such as seals, gaskets, dust covers) e) re-connecting instrumentation p" +
-                        "ipework and power supply f) checking that signal transmission is satisfactory El" +
-                        "ectronic equipment: Carry out all of the following: a) isolating equipment from " +
-                        "the power supply b) equipment to the required level c) disconnecting and reconne" +
-                        "cting wires and cables d) removing and replacing electronic units/circuit boards" +
-                        " e) removing and replacing electronic components f) soldering and de-soldering g" +
-                        ") making de-energised checks before powering up;", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+                        ": a) draining and replenishing fluids b) removing and refitting/replacing lockin" +
+                        "g and retaining devices c) proof marking components to aid reassembly d) removin" +
+                        "g and refitting minor mechanical units/sub-assemblies (such as guards, cover pla" +
+                        "tes, pulleys and belts) e) removing and refitting major mechanical components (s" +
+                        "uch as shafts, gear mechanisms, bearings, clutches) f) replacing lifed items (su" +
+                        "ch as filters, oils/lubricants) g) setting, aligning and adjusting replaced unit" +
+                        "s Electrical equipment: Carry out all of the following: a) isolating the power s" +
+                        "upply b) disconnecting and reconnecting wires/cables c) removing and replacing m" +
+                        "inor electrical components (such as relays, sensing devices, limit switches) d) " +
+                        "removing and replacing major electrical components (such as motors, switch/contr" +
+                        "ol gear) e) attaching cable end fittings (such as crimped and soldered) f) makin" +
+                        "g de-energised checks before powering up Fluid power equipment: Carry out all of" +
+                        " the following: a) chocking/supporting cylinders/rams/components b) releasing st" +
+                        "ored pressure c) removing and replacing hoses/pipes d) removing and replacing mi" +
+                        "nor or lifted components (such as filters, gaskets, dust seals) e) removing and " +
+                        "replacing major components (such as pumps, cylinders, valves, actuators) f) sett" +
+                        "ing and adjusting replaced components g) making de-energised checks before re-pr" +
+                        "essurising the system Programmable controller based equipment: Carry out all of " +
+                        "the following: a) de-activating and resetting program controller b) disconnectin" +
+                        "g and reconnecting wires/cables c) removing and replacing input/output interfaci" +
+                        "ng d) removing and replacing program logic peripherals e) checking and reviewing" +
+                        " program format and content f) editing programs using the correct procedure (whe" +
+                        "re appropriate) Process instrumentation: Carry out all of the following: a) isol" +
+                        "ating instruments/sensing devices b) disconnecting supply/signal connections c) " +
+                        "removing and replacing instruments in the system d) replacing all ‘lifed’ items " +
+                        "(such as seals, gaskets, dust covers) e) re-connecting instrumentation pipework " +
+                        "and power supply f) checking that signal transmission is satisfactory Electronic" +
+                        " equipment: Carry out all of the following: a) isolating equipment from the powe" +
+                        "r supply b) dismantling/disconnecting equipment to the required level c) disconn" +
+                        "ecting and reconnecting wires and cables d) removing and replacing electronic un" +
+                        "its/circuit boards e) removing and replacing electronic components f) soldering " +
+                        "and de-soldering g) making de-energised checks before powering up;", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 150
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -627,8 +627,8 @@ this.ScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
 #line 161
     testRunner.Given("I have entered:", "12 Find faults that have resulted in two of the following breakdown categories: a" +
-                        ") intermittent problem b) partial failure / out of specification output c) compl" +
-                        "ete breakdowns", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+                        ") intermittent problem b) partial failure/out-of-specification output c) complet" +
+                        "e breakdowns", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 165
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -659,7 +659,7 @@ this.ScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
 #line 168
     testRunner.Given("I have entered:", @"11 Use four of the following types of test equipment to aid fault diagnosis: a) multimeter b) pressure sources c) oscilloscope d) digital pressure indicators e) signal sources/generator f) standard test gauges g) current injection devices h) special purpose test equipment i) logic probe j) signal tracer k) other specific test equipment
-12 Find faults that have resulted in two of the following breakdown categories: a) intermittent problem b) partial failure / out of specification output c) complete breakdowns", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+12 Find faults that have resulted in two of the following breakdown categories: a) intermittent problem b) partial failure/out-of-specification output c) complete breakdowns", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 173
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -690,8 +690,8 @@ this.ScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
 #line 176
     testRunner.Given("I have entered:", "12 Find faults that have resulted in two of the following breakdown categories: a" +
-                        ") intermittent problem b) partial failure / out of specification output c) compl" +
-                        "ete breakdowns", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+                        ") intermittent problem b) partial failure/out-of-specification output c) complet" +
+                        "e breakdowns", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 180
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -739,15 +739,15 @@ this.ScenarioInitialize(scenarioInfo);
                         "rom lines of logic, where appropriate 1.13.13 check counter and timer settings 1" +
                         ".13.14 save edited programs 1.13.15 produce back-ups of completed programs 1.13." +
                         "16 ensure that any alterations to programs are communicated fully to the appropr" +
-                        "iate personnel or carry out all of the following: 1.13.17 confirm that the robot" +
-                        " operates within the defined operating environment / envelope / cell layout 1.13" +
-                        ".18 ensure that start-up positions are safe and correctly set 1.13.19 check that" +
-                        " intrusion monitoring systems are operating correctly (where appropriate) 1.13.2" +
-                        "0 check that robot operations are executed safely and correctly 1.13.21 monitor " +
-                        "and review cycle times 1.13.22 ensure that all operations are carried out to pro" +
-                        "gram coordinates 1.13.23 save edited programs 1.13.24 produce back-ups of comple" +
-                        "ted programs 1.13.25 ensure that any alterations to programs are communicated fu" +
-                        "lly to the appropriate personnel \r\n1.14", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+                        "iate personnel                 or carry out all of the following: 1.13.17 confir" +
+                        "m that the robot operates within the defined operating environment/envelope/cell" +
+                        " layout 1.13.18 ensure that start-up positions are safe and correctly set 1.13.1" +
+                        "9 check that intrusion monitoring systems are operating correctly (where appropr" +
+                        "iate) 1.13.20 check that robot operations are executed safely and correctly 1.13" +
+                        ".21 monitor and review cycle times 1.13.22 ensure that all operations are carrie" +
+                        "d out to program coordinates 1.13.23 save edited programs 1.13.24 produce back-u" +
+                        "ps of completed programs 1.13.25 ensure that any alterations to programs are com" +
+                        "municated fully to the appropriate personnel \r\n1.14", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 188
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -808,7 +808,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 199
-    testRunner.Given("I have entered:", @"1.3 Use all the following organisational documentation systems, policies and procedures when arranging engineering manufacturing logistics operations: health and safety, security, regulations and industry guidelines, international / national standards and directives, roles and responsibilities, selection of transport provider, selection of appropriate transport method, product/component ordering, confidentially Plus five from the following: in-house movement of goods, national movement of goods, international movements of goods, receipt of goods (such as raw materials, processed materials), stock rotation, part/document issue levels are up to date and valid, storage of goods, dispatch of goods, recycling and disposal of the materials used during transit (such as packaging), ethics and values", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("I have entered:", @"1.3 Use all the following organisational documentation systems, policies and procedures when arranging engineering manufacturing logistics operations: health and safety, security, regulations and industry guidelines, international/national standards and directives, roles and responsibilities, selection of transport provider, selection of appropriate transport method, product/component ordering, confidentially Plus five from the following: in-house movement of goods, national movement of goods, international movements of goods, receipt of goods (such as raw materials, processed materials), stock rotation, part/document issue levels are up to date and valid, storage of goods, dispatch of goods, recycling and disposal of the materials used during transit (such as packaging), ethics and values", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 203
  testRunner.When("parse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
