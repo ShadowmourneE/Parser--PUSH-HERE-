@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Forms;
@@ -28,12 +29,11 @@
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //TEST functionality
-                //var test = ParserExtension.PrepareEnteredTextAsTemplateToParse(openFileDialog.FileName);
                 _parser.StartParse(openFileDialog.FileName);
-                await _parser.ExportToExcelAsync();
+                var fileName = $@"{Path.GetDirectoryName(openFileDialog.FileName)}\{Path.GetFileNameWithoutExtension(openFileDialog.FileName)}.xlsx";
+                await _parser.ExportToExcelAsync(fileName);
 
-                MessageBox.Show("Successfully written in .xlsx - see C: SomeDir Folder:");
+                MessageBox.Show($@"Successfully written to ""{fileName}""");
 
                 Application.Exit();
             }

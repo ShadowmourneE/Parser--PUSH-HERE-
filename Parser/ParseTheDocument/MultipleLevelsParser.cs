@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -20,12 +21,15 @@
             _warningsPairs = new Dictionary<string, string>();
         }
 
-        public async Task ExportToExcelAsync() {
+        public async Task ExportToExcelAsync(string fileName) {
             await Task.Run(() =>
             {
                 var excelApp = new Microsoft.Office.Interop.Excel.Application();
                 var workBook = excelApp.Workbooks.Add();
                 Microsoft.Office.Interop.Excel.Worksheet workSheet = workBook.ActiveSheet;
+                // set each cell's format to Text
+                workSheet.Cells.NumberFormat = "@";
+
                 workSheet.Cells[1, "A"] = "Index";
                 workSheet.Cells[1, "B"] = "Name";
                 workSheet.Cells[1, "C"] = "AimReferences";
@@ -60,7 +64,7 @@
                     j++;
                 }
 
-                workBook.Close(true, $@"C:\SomeDir\ParsedFile-{DateTime.Now.Hour}_{DateTime.Now.Minute.ToString()}_{DateTime.Now.Second.ToString()}.xlsx");
+                workBook.Close(true, fileName);
                 excelApp.Quit();
             });
         }
