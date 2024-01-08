@@ -26,6 +26,7 @@
             "Skill",
             "Behaviour",
             "Knowledge",
+            "ApprenticeshipStandard"
         };
 
         public List<Error> Errors
