@@ -61,7 +61,7 @@
                 {
                     var worksheet = package.Workbook.Worksheets[0]; // Assuming the data is in the first worksheet
 
-                    for (int row = worksheet.Dimension.Start.Row + 2; row <= worksheet.Dimension.End.Row && !string.IsNullOrEmpty((string)worksheet.Cells[row, 1].Value); row++)
+                    for (int row = worksheet.Dimension.Start.Row + 2; !string.IsNullOrEmpty((string)worksheet.Cells[row, 1].Value); row++)
                     {
                         var standartType = worksheet.Cells[row, 5].Value;
                         if(!StandartTypes.Contains(standartType))
